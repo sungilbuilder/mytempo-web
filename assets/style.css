@@ -1,17 +1,22 @@
 /* mytempo.co.kr — shared styles
-   컬러 토큰은 앱 다크 테마(golf-tempo-app/HQ/04_Demo)와 동일하게 맞췄습니다. */
+   컬러 토큰은 확정 문서 "디자인가이드-라이트다크-토글"의 라이트모드 팔레트와 동일하게 맞췄습니다.
+   그린/골드는 다크(네온) 대신 원래 채도 낮은 값(#436437/#D4AF37)을 그대로 사용합니다.
+   단, 골드는 흰 배경 위 텍스트로 쓰면 대비가 2.1:1로 기준 미달이라 텍스트 강조색은
+   --accent(그린)로 분리하고, 골드는 막대·보더 같은 채우기 용도로만 씁니다. */
 
 :root {
-  --bg: #101410;
-  --surface: #181D17;
-  --surface-2: #20261F;
-  --line: #2B322A;
-  --green: #5FC639;
-  --gold: #EFC94D;
-  --gold-bright: #F7D464;
+  --bg: #FAF8F2;
+  --surface: #FFFFFF;
+  --surface-2: #F3EFE2;
+  --line: #E3DFD1;
+  --green: #436437;
+  --gold: #D4AF37;
+  --accent: #436437;
+  --accent-hover: #375228;
   --icon-bg: #436437;
-  --ink: #F5F7F2;
-  --muted: #A9B3A5;
+  --ink: #26331F;
+  --muted: #6E7C66;
+  --on-accent: #F7F1E0;
 
   --container: 1080px;
   --radius: 16px;
@@ -45,7 +50,7 @@ a { color: inherit; }
   position: sticky;
   top: 0;
   z-index: 20;
-  background: rgba(16, 20, 16, 0.85);
+  background: rgba(250, 248, 242, 0.85);
   backdrop-filter: blur(8px);
   border-bottom: 1px solid var(--line);
 }
@@ -101,7 +106,7 @@ section.tight { padding: 64px 0; }
 .eyebrow {
   font-size: 13px;
   font-weight: 700;
-  color: var(--gold);
+  color: var(--accent);
   letter-spacing: 0.02em;
   margin: 0 0 16px;
 }
@@ -148,7 +153,7 @@ h2.section-title {
   align-items: center;
   gap: 8px;
   background: var(--green);
-  color: #0A0F09;
+  color: var(--on-accent);
   font-weight: 800;
   font-size: 15px;
   padding: 14px 22px;
@@ -157,7 +162,7 @@ h2.section-title {
   border: none;
   cursor: pointer;
 }
-.btn-primary:hover { background: var(--gold-bright); }
+.btn-primary:hover { background: var(--accent-hover); }
 .cta-note { font-size: 13px; color: var(--muted); }
 
 /* ---------- Tempo Arc Mark (hero visual) ---------- */
@@ -212,7 +217,7 @@ h2.section-title {
 .card .num {
   font-size: 12px;
   font-weight: 800;
-  color: var(--gold);
+  color: var(--accent);
   margin-bottom: 14px;
 }
 .card h3 {
@@ -282,7 +287,7 @@ h2.section-title {
   color: var(--muted);
   margin-bottom: 10px;
 }
-.split .tag.accent { color: var(--gold); }
+.split .tag.accent { color: var(--accent); }
 .split p { font-size: 16px; color: var(--ink); margin: 0; }
 
 .trust-list {
@@ -310,12 +315,12 @@ h2.section-title {
   background: var(--green);
 }
 .link-arrow {
-  color: var(--gold);
+  color: var(--accent);
   text-decoration: none;
   font-size: 14px;
   font-weight: 700;
 }
-.link-arrow:hover { color: var(--gold-bright); }
+.link-arrow:hover { color: var(--accent-hover); }
 
 /* ---------- Pricing ---------- */
 .price-grid {
@@ -339,7 +344,7 @@ h2.section-title {
   color: var(--muted);
   margin-bottom: 8px;
 }
-.price-card.highlight .plan { color: var(--gold); }
+.price-card.highlight .plan { color: var(--accent); }
 .price-card .amount {
   font-size: 32px;
   font-weight: 800;
