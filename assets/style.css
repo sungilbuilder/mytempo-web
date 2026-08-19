@@ -1,38 +1,71 @@
 /* mytempo.co.kr — shared styles
-   컬러 토큰은 확정 문서 "디자인가이드-라이트다크-토글"의 라이트모드 팔레트와 동일하게 맞췄습니다.
-   그린/골드는 다크(네온) 대신 원래 채도 낮은 값(#436437/#D4AF37)을 그대로 사용합니다.
-   단, 골드는 흰 배경 위 텍스트로 쓰면 대비가 2.1:1로 기준 미달이라 텍스트 강조색은
-   --accent(그린)로 분리하고, 골드는 막대·보더 같은 채우기 용도로만 씁니다. */
+   컬러/타이포 토큰은 앱 실제 소스(constants/theme.ts, tailwind.config.js — 2026-07-31 프리미엄
+   리디자인)와 동일하게 맞췄다. 이전엔 그 이전 세대 팔레트(#436437/#D4AF37, bg #FAF8F2)와
+   시스템 폰트를 쓰고 있어 앱과 색이 미묘하게 어긋나 있었고, 브랜드 서체(Noto Sans KR / Space
+   Grotesk)도 전혀 로드하지 않고 있었다.
+   골드는 흰 배경 위 텍스트로 쓰면 대비가 기준 미달이라 텍스트 강조색은 --green으로 분리하고,
+   골드는 막대·보더·데코 같은 채우기 용도로만 쓴다(앱의 onAccent 토큰과 같은 원칙). */
 
 :root {
-  --bg: #FAF8F2;
+  --bg: #FBFAF6;
   --surface: #FFFFFF;
-  --surface-2: #F3EFE2;
-  --line: #E3DFD1;
-  --green: #436437;
-  --gold: #D4AF37;
-  --accent: #436437;
-  --accent-hover: #375228;
-  --icon-bg: #436437;
-  --ink: #26331F;
-  --muted: #6E7C66;
-  --on-accent: #F7F1E0;
+  --surface-2: #F2F0E8;
+  --line: #E7E4D9;
+  --track: #F0EEE6;
+  --ink: #16211A;
+  --muted: #5F6C5C;
+  --subtle: #8A9382;
+  --green: #3F6136;
+  --green-deep: #2E4A24;
+  --gold: #D9B84A;
+  --gold-deep: #C9A431;
+  --on-primary: #F2F5EE;
+  --on-accent: #16211A;
 
   --container: 1080px;
-  --radius: 16px;
+  --space-1: 8px;
+  --space-2: 16px;
+  --space-3: 24px;
+  --space-4: 32px;
+  --space-6: 48px;
+  --radius-sm: 12px;
+  --radius: 18px;
+  --radius-lg: 24px;
+
+  --font-kr: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+  --font-display: 'Space Grotesk', var(--font-kr);
+}
+
+/* 다크는 시스템 설정을 그대로 따른다(토글 없음) — 앱의 기본 동작과 동일.
+   값은 앱 다크 팔레트(theme.ts darkColors)와 1:1 대응. */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0D110D;
+    --surface: #161C15;
+    --surface-2: #222A20;
+    --line: #2C3629;
+    --track: #232C21;
+    --ink: #F2F5EE;
+    --muted: #8A9782;
+    --subtle: #5C6659;
+    --green: #7ED45C;
+    --green-deep: #4E8C39;
+    --gold: #E9CE6C;
+    --gold-deep: #E4C863;
+    --on-primary: #0A0F09;
+    --on-accent: #0A0F09;
+  }
 }
 
 * { box-sizing: border-box; }
 
-html {
-  scroll-behavior: smooth;
-}
+html { scroll-behavior: smooth; }
 
 body {
   margin: 0;
   background: var(--bg);
   color: var(--ink);
-  font-family: -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+  font-family: var(--font-kr);
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
 }
@@ -50,7 +83,7 @@ a { color: inherit; }
   position: sticky;
   top: 0;
   z-index: 20;
-  background: rgba(250, 248, 242, 0.85);
+  background: color-mix(in srgb, var(--bg) 85%, transparent);
   backdrop-filter: blur(8px);
   border-bottom: 1px solid var(--line);
 }
@@ -70,7 +103,7 @@ a { color: inherit; }
   width: 32px;
   height: 32px;
   border-radius: 9px;
-  background: var(--icon-bg);
+  background: var(--green);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -78,9 +111,10 @@ a { color: inherit; }
 }
 .brand-mark svg { width: 18px; height: 18px; }
 .brand-word {
+  font-family: var(--font-display);
   font-size: 17px;
   font-weight: 700;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.01em;
   color: var(--ink);
 }
 .nav-links {
@@ -106,7 +140,7 @@ section.tight { padding: 64px 0; }
 .eyebrow {
   font-size: 13px;
   font-weight: 700;
-  color: var(--accent);
+  color: var(--green);
   letter-spacing: 0.02em;
   margin: 0 0 16px;
 }
@@ -153,71 +187,130 @@ h2.section-title {
   align-items: center;
   gap: 8px;
   background: var(--green);
-  color: var(--on-accent);
+  color: var(--on-primary);
   font-weight: 800;
   font-size: 15px;
   padding: 14px 22px;
-  border-radius: 12px;
+  border-radius: var(--radius-sm);
   text-decoration: none;
   border: none;
   cursor: pointer;
 }
-.btn-primary:hover { background: var(--accent-hover); }
+.btn-primary:hover { background: var(--green-deep); }
 .cta-note { font-size: 13px; color: var(--muted); }
 
-/* ---------- Tempo Arc Mark (hero visual) ---------- */
-.arc-wrap {
+/* ---------- Tempo Ring (hero visual) ----------
+   앱의 시그니처 컴포넌트(components/TempoRing.tsx)를 웹으로 그대로 옮긴 것.
+   트랙 위에 골드 링 전체 → 그 위로 백스윙 비율(3:1→75%)만큼 그린을 덮고,
+   진행 점 하나가 그 비율을 실제로 돌며 "소리가 반복된다"는 감각을 전달한다.
+   임의의 장식 아이콘이 아니라 앱 홈·연습 화면과 동일한 형태라 스크린샷 한 장으로도
+   브랜드를 식별하게 하려는 의도(원본 주석과 동일). */
+.ring-wrap {
   display: flex;
   align-items: center;
   justify-content: center;
 }
-.arc {
-  width: min(320px, 80vw);
-  height: min(320px, 80vw);
+.ring {
+  width: min(300px, 78vw);
+  height: min(300px, 78vw);
   position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
-.arc svg { width: 100%; height: 100%; }
-.arc-ring-rotate {
+.ring svg { width: 100%; height: 100%; overflow: visible; }
+.ring-track { stroke: var(--track); }
+.ring-gold { stroke: var(--gold); }
+.ring-green { stroke: var(--green); }
+.ring-dot-wrap {
   position: absolute;
   inset: 0;
-  animation: arcRotate 4.2s linear infinite;
+  animation: ringSpin 2.6s linear infinite;
 }
-@keyframes arcRotate {
+.ring-dot { fill: var(--ink); }
+@keyframes ringSpin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
-.arc-center {
+.ring-center {
   position: absolute;
-  width: 14%;
-  height: 14%;
-  border-radius: 50%;
-  background: var(--gold);
-  animation: arcPulse 1.4s ease-in-out infinite;
-}
-@keyframes arcPulse {
-  0%, 100% { transform: scale(1); opacity: 1; }
-  50% { transform: scale(1.15); opacity: 0.75; }
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(38px, 7vw, 52px);
+  letter-spacing: -0.02em;
+  color: var(--ink);
 }
 
-/* ---------- Feature cards ---------- */
+/* ring-pulse — 앱의 HitRipple: 백스윙 시작(위쪽 점) · 탑(그린/골드 경계, 왼쪽 점) · 임팩트(위쪽 점, 다음 시작과 동일 지점)
+   세 타이밍에 파형처럼 번졌다 사라지는 펄스. 도트 궤도(2.6s)와 같은 주기로 맞춘다. */
+.ring-pulse {
+  position: absolute;
+  width: 11%;
+  height: 11%;
+  border-radius: 50%;
+  top: 8%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.6);
+  opacity: 0;
+  pointer-events: none;
+}
+.ring-pulse-top { top: 50%; left: 8%; }
+.ring-pulse-start { background: var(--green); animation: ringPulseStart 2.6s linear infinite; }
+.ring-pulse-top { background: var(--ink); animation: ringPulseTop 2.6s linear infinite; }
+.ring-pulse-impact { background: var(--gold); animation: ringPulseImpact 2.6s linear infinite; }
+@keyframes ringPulseStart {
+  0% { transform: translate(-50%, -50%) scale(0.6); opacity: 0.85; }
+  13.5% { transform: translate(-50%, -50%) scale(1.7); opacity: 0; }
+  13.51%, 100% { transform: translate(-50%, -50%) scale(0.6); opacity: 0; }
+}
+@keyframes ringPulseTop {
+  0%, 74.9% { transform: translate(-50%, -50%) scale(0.6); opacity: 0; }
+  75% { transform: translate(-50%, -50%) scale(0.6); opacity: 0.85; }
+  88.5% { transform: translate(-50%, -50%) scale(1.7); opacity: 0; }
+  88.51%, 100% { opacity: 0; }
+}
+@keyframes ringPulseImpact {
+  0%, 86.4% { transform: translate(-50%, -50%) scale(0.6); opacity: 0; }
+  86.5% { transform: translate(-50%, -50%) scale(0.6); opacity: 0.85; }
+  100% { transform: translate(-50%, -50%) scale(1.7); opacity: 0; }
+}
+
+/* ---------- Feature bento ----------
+   기존엔 4개 카드가 전부 같은 크기였다(전형적인 "AI가 만든 4분할 기능 그리드").
+   가장 구체적인 기능(내 스윙 등록 — 실제 데모 바가 있는 카드)을 크게 키워
+   시각적 위계를 준다. */
 .grid-4 {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-areas:
+    "f2 f2 f2"
+    "f1 f3 f4";
   gap: 20px;
 }
+.grid-4 > .card:nth-child(1) { grid-area: f1; }
+.grid-4 > .card:nth-child(2) { grid-area: f2; }
+.grid-4 > .card:nth-child(3) { grid-area: f3; }
+.grid-4 > .card:nth-child(4) { grid-area: f4; }
+
 .card {
   background: var(--surface);
   border: 1px solid var(--line);
   border-radius: var(--radius);
   padding: 28px 24px;
 }
+.card-feature {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 32px;
+  align-items: center;
+  padding: 32px;
+}
 .card .num {
-  font-size: 12px;
-  font-weight: 800;
-  color: var(--accent);
+  font-family: var(--font-display);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--green);
   margin-bottom: 14px;
 }
 .card h3 {
@@ -230,22 +323,23 @@ h2.section-title {
   color: var(--muted);
   margin: 0;
 }
+.card-feature h3 { font-size: 20px; }
+.card-feature p { font-size: 15px; }
 
-/* displayNumber — 디자인가이드-v2-다크 §2: 비율 숫자가 주인공, 막대는 보조 */
+/* displayNumber — 앱과 동일 원칙: 비율 숫자가 주인공, 막대는 보조 */
 .display-number {
-  font-size: clamp(32px, 5vw, 40px);
-  font-weight: 800;
+  font-family: var(--font-display);
+  font-size: clamp(32px, 5vw, 44px);
+  font-weight: 700;
   letter-spacing: -0.02em;
   color: var(--ink);
   line-height: 1.1;
   margin-top: 18px;
   margin-bottom: 0;
 }
-
-/* tempo bar visual reused inside feature card */
 .tempo-bar-demo {
   margin-top: 10px;
-  height: 14px;
+  height: 16px;
   border-radius: 999px;
   background: var(--surface-2);
   display: flex;
@@ -257,8 +351,8 @@ h2.section-title {
 .tempo-bar-demo .dot {
   position: absolute;
   top: -3px;
-  width: 20px;
-  height: 20px;
+  width: 22px;
+  height: 22px;
   border-radius: 50%;
   background: var(--ink);
   animation: dotMove 1.4s linear infinite;
@@ -268,27 +362,27 @@ h2.section-title {
   100% { left: 100%; transform: translateX(-100%); }
 }
 
-/* ---------- Diff / Trust two-col ---------- */
-.split {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px;
-}
-.split .block {
-  background: var(--surface);
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  padding: 28px;
-}
-.split .block.muted-block { opacity: 0.75; }
-.split .tag {
-  font-size: 12px;
-  font-weight: 700;
+/* ---------- Difference statement ----------
+   기존의 "다른 앱들 vs mytempo" 2박스 대비 레이아웃은 AI 생성 SaaS 랜딩의
+   대표적인 클리셰라 걷어냈다. 대신 문장 두 줄의 크기 대비로 같은 메시지를 전달한다. */
+.difference { max-width: 720px; }
+.difference .statement {
+  font-size: clamp(17px, 2.2vw, 20px);
   color: var(--muted);
-  margin-bottom: 10px;
+  margin: 0 0 12px;
 }
-.split .tag.accent { color: var(--accent); }
-.split p { font-size: 16px; color: var(--ink); margin: 0; }
+.difference .statement-accent {
+  font-family: var(--font-display);
+  font-size: clamp(24px, 3.6vw, 34px);
+  font-weight: 700;
+  color: var(--ink);
+  letter-spacing: -0.01em;
+  margin: 0;
+}
+.difference .statement-accent em {
+  font-style: normal;
+  color: var(--green);
+}
 
 .trust-list {
   list-style: none;
@@ -315,14 +409,18 @@ h2.section-title {
   background: var(--green);
 }
 .link-arrow {
-  color: var(--accent);
+  color: var(--green);
   text-decoration: none;
   font-size: 14px;
   font-weight: 700;
 }
-.link-arrow:hover { color: var(--accent-hover); }
+.link-arrow:hover { color: var(--green-deep); }
 
-/* ---------- Pricing ---------- */
+/* ---------- Pricing ----------
+   기존엔 Lifetime 카드에 골드 그라데이션 + 강조 보더를 줘서 전형적인 "추천 플랜"
+   업셀 박스처럼 보였다. 무료가 핵심 훈련 루프 전체라는 브랜드 원칙(구독 없음·
+   과장 없음)과 맞지 않아 두 카드를 동일한 시각 무게로 맞추고, Lifetime은 작은
+   태그로만 구분한다. */
 .price-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -334,23 +432,32 @@ h2.section-title {
   border-radius: var(--radius);
   padding: 32px;
 }
-.price-card.highlight {
-  border-color: var(--gold);
-  background: linear-gradient(180deg, var(--surface-2), var(--surface));
+.price-card .plan-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
 }
 .price-card .plan {
   font-size: 13px;
   font-weight: 700;
   color: var(--muted);
-  margin-bottom: 8px;
 }
-.price-card.highlight .plan { color: var(--accent); }
+.price-card .plan-tag {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--green);
+  background: var(--surface-2);
+  border-radius: 999px;
+  padding: 2px 8px;
+}
 .price-card .amount {
+  font-family: var(--font-display);
   font-size: 32px;
-  font-weight: 800;
+  font-weight: 700;
   margin-bottom: 4px;
 }
-.price-card .amount span { font-size: 14px; font-weight: 500; color: var(--muted); }
+.price-card .amount span { font-family: var(--font-kr); font-size: 14px; font-weight: 500; color: var(--muted); }
 .price-card .desc {
   font-size: 13px;
   color: var(--muted);
@@ -443,9 +550,16 @@ footer .wrap {
 /* ---------- Responsive ---------- */
 @media (max-width: 860px) {
   .hero .wrap { grid-template-columns: 1fr; }
-  .arc-wrap { order: -1; }
-  .split { grid-template-columns: 1fr; }
+  .ring-wrap { order: -1; }
+  .grid-4 { grid-template-columns: 1fr; grid-template-areas: "f2" "f1" "f3" "f4"; }
+  .card-feature { grid-template-columns: 1fr; }
   .price-grid { grid-template-columns: 1fr; }
   .nav-links { display: none; }
   section { padding: 64px 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ring-dot-wrap, .tempo-bar-demo .dot,
+  .ring-pulse-start, .ring-pulse-top, .ring-pulse-impact { animation: none; }
+  .ring-pulse { opacity: 0; }
 }
