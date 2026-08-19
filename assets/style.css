@@ -226,9 +226,20 @@ h2.section-title {
   margin: 0;
 }
 
+/* displayNumber — 디자인가이드-v2-다크 §2: 비율 숫자가 주인공, 막대는 보조 */
+.display-number {
+  font-size: clamp(32px, 5vw, 40px);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  line-height: 1.1;
+  margin-top: 18px;
+  margin-bottom: 0;
+}
+
 /* tempo bar visual reused inside feature card */
 .tempo-bar-demo {
-  margin-top: 20px;
+  margin-top: 10px;
   height: 14px;
   border-radius: 999px;
   background: var(--surface-2);
