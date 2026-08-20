@@ -19,10 +19,18 @@
   --on-accent: #16211A;
 
   /* v2 신설 — 섹션 리듬용 대비 밴드 (다크에서 값이 뒤집히지 않게 별도 토큰) */
-  --band: #16211A;
-  --band-ink: #F2F5EE;
-  --band-muted: #9AA894;
-  --band-line: #2C3629;
+  /* 대비 밴드 — 라이트에서는 "어둡게"가 아니라 "한 단계 짙은 표면"으로 간다.
+     페이지 전체가 밝은데 특정 섹션만 검게 깔리면 다크모드 화면을 잘못 붙인 것처럼 읽힌다. */
+  --band: #F3F1E8;
+  --band-ink: #16211A;
+  --band-muted: #5F6C5C;
+  --band-line: #E1DDD0;
+  --band-accent: #3F6136;          /* 밴드 위 강조색. 라이트에서 골드를 글자에 쓰면 대비 미달 */
+  --band-card: #FFFFFF;            /* 밴드 안 카드 */
+  --band-btn: #3F6136;
+  --band-btn-ink: #F2F5EE;
+  /* 폰 목업 베젤 — 실물 기기라 라이트/다크 상관없이 항상 어둡다 */
+  --bezel: #16211A;
 
   --container: 1120px;
   --space-1: 8px;
@@ -59,6 +67,11 @@
     --band-ink: #F2F5EE;
     --band-muted: #8A9782;
     --band-line: #2C3629;
+    --band-accent: #E9CE6C;
+    --band-card: #222A20;
+    --band-btn: #E9CE6C;
+    --band-btn-ink: #0A0F09;
+    --bezel: #050805;
   }
 }
 
@@ -124,7 +137,7 @@ h2.section-title { font-size: clamp(26px, 4vw, 40px); font-weight: 800; line-hei
 .band { background: var(--band); color: var(--band-ink); }
 .band .section-title { color: var(--band-ink); }
 .band .section-sub { color: var(--band-muted); }
-.band .eyebrow { color: var(--gold); }
+.band .eyebrow { color: var(--band-accent); }
 
 /* ---------- Hero ---------- */
 .hero { padding: 80px 0 96px; border-bottom: 1px solid var(--line); overflow: hidden; }
@@ -189,7 +202,7 @@ h2.section-title { font-size: clamp(26px, 4vw, 40px); font-weight: 800; line-hei
   width: min(310px, 82vw);
   aspect-ratio: 620 / 1302;   /* 실기기 스크린샷 + 상태바 밴드 비율 */
   background: var(--bg);
-  border: 10px solid var(--band);
+  border: 10px solid var(--bezel);
   border-radius: 44px;
   box-shadow: 0 26px 60px -20px rgba(22,33,26,.42);
   overflow: hidden;
@@ -197,7 +210,7 @@ h2.section-title { font-size: clamp(26px, 4vw, 40px); font-weight: 800; line-hei
 .phone picture, .phone img { display: block; width: 100%; height: 100%; object-fit: cover; }
 .phone-notch {
   position: absolute; top: 9px; left: 50%; transform: translateX(-50%);
-  width: 92px; height: 22px; border-radius: 999px; background: var(--band); z-index: 3;
+  width: 92px; height: 22px; border-radius: 999px; background: var(--bezel); z-index: 3;
 }
 
 /* ---------- Tempo Ring ----------
@@ -358,23 +371,24 @@ h2.section-title { font-size: clamp(26px, 4vw, 40px); font-weight: 800; line-hei
   font-family: var(--font-display); font-size: clamp(26px, 4.2vw, 42px);
   font-weight: 700; color: var(--band-ink); letter-spacing: -0.025em; line-height: 1.25; margin: 0;
 }
-.difference .statement-accent em { font-style: normal; color: var(--gold); }
+.difference .statement-accent em { font-style: normal; color: var(--band-accent); }
 
 /* ---------- Trust ---------- */
 .trust-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; margin-bottom: 32px; }
 .trust-item {
   border: 1px solid var(--band-line); border-radius: var(--radius);
-  padding: 24px 22px; background: color-mix(in srgb, var(--band-ink) 4%, transparent);
+  padding: 24px 22px; background: var(--band-card);
 }
 .trust-item .ic {
-  width: 34px; height: 34px; border-radius: 10px; background: color-mix(in srgb, var(--gold) 18%, transparent);
+  width: 34px; height: 34px; border-radius: 10px;
+  background: color-mix(in srgb, var(--band-accent) 15%, transparent);
   display: flex; align-items: center; justify-content: center; margin-bottom: 16px;
 }
-.trust-item .ic svg { width: 17px; height: 17px; stroke: var(--gold); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.trust-item .ic svg { width: 17px; height: 17px; stroke: var(--band-accent); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
 .trust-item h3 { font-size: 15px; font-weight: 700; color: var(--band-ink); margin-bottom: 6px; }
 .trust-item p { font-size: 13px; color: var(--band-muted); margin: 0; }
 .link-arrow { color: var(--green); text-decoration: none; font-size: 14px; font-weight: 700; }
-.band .link-arrow { color: var(--gold); }
+.band .link-arrow { color: var(--band-accent); }
 .link-arrow:hover { opacity: .8; }
 
 /* ---------- Pricing ---------- */
@@ -470,10 +484,10 @@ body { word-break: keep-all; overflow-wrap: break-word; }
 
 /* 대비 밴드 위 버튼 — 라이트모드 --green(#3F6136)을 밴드(#16211A)에 얹으면
    1.5:1 수준으로 사실상 안 보인다. 밴드 위에서는 골드 채우기 + 먹색 텍스트(8.6:1). */
-.band .btn-primary { background: var(--gold); color: var(--on-accent); }
-.band .btn-primary:hover { background: var(--gold-deep); }
+.band .btn-primary { background: var(--band-btn); color: var(--band-btn-ink); }
+.band .btn-primary:hover { filter: brightness(0.92); }
 .band .signup input {
-  background: color-mix(in srgb, var(--band-ink) 8%, transparent);
+  background: var(--band-card);
   border-color: var(--band-line); color: var(--band-ink);
 }
 .band .signup input::placeholder { color: var(--band-muted); }
@@ -548,13 +562,8 @@ section.tight.statement-only { padding: 56px 0 8px; }
 
 /* ---------- 포지셔닝 밴드 안의 템포 링 ----------
    히어로는 실제 앱 스크린샷이 맡고, 시그니처 링은 이 대비 밴드에서 크게 돈다.
-   이 섹션은 라이트·다크 어느 쪽에서도 어두운 표면(--band)이므로,
-   링 색은 앱의 **다크 팔레트 값**을 쓴다 (theme.ts darkColors.primary / accent).
-   --green(#3F6136)을 밴드(#16211A) 위에 얹으면 거의 안 보인다. */
-:root {
-  --on-band-green: #7ED45C;
-  --on-band-gold: #E9CE6C;
-}
+   밴드가 각 모드의 표면색을 따라가므로 링도 기본 팔레트(--green/--gold)를 그대로 쓴다.
+   트랙만 밴드 배경보다 한 단계 짙게 잡는다 — --track 은 --bg 기준이라 밴드 위에서 묻힌다. */
 
 .difference-row {
   display: grid; grid-template-columns: 1.15fr 0.85fr;
@@ -563,13 +572,13 @@ section.tight.statement-only { padding: 56px 0 8px; }
 .difference { max-width: 560px; }
 .difference-ring { display: flex; flex-direction: column; align-items: center; gap: 20px; }
 
-.band .ring-track { stroke: color-mix(in srgb, var(--band-ink) 13%, transparent); }
-.band .ring-green { stroke: var(--on-band-green); }
-.band .ring-gold  { stroke: var(--on-band-gold); }
+.band .ring-track { stroke: color-mix(in srgb, var(--band-ink) 11%, transparent); }
+.band .ring-green { stroke: var(--green); }
+.band .ring-gold  { stroke: var(--gold); }
 .band .ring-dot   { fill: var(--band-ink); }
 .band .ring-center { color: var(--band-ink); }
 .band .ring-center small { color: var(--band-muted); }
-.band .ring-fx-impact { stroke: var(--on-band-gold); }
+.band .ring-fx-impact { stroke: var(--gold); }
 .band .ring-fx-top { stroke: var(--band-ink); }
 
 .ring-caption {
@@ -580,8 +589,8 @@ section.tight.statement-only { padding: 56px 0 8px; }
   display: inline-block; width: 9px; height: 9px; border-radius: 50%;
   margin-right: 7px; vertical-align: middle;
 }
-.ring-caption .k-green { background: var(--on-band-green); }
-.ring-caption .k-gold { background: var(--on-band-gold); }
+.ring-caption .k-green { background: var(--green); }
+.ring-caption .k-gold { background: var(--gold); }
 
 @media (max-width: 940px) {
   .difference-row { grid-template-columns: 1fr; gap: 40px; }
