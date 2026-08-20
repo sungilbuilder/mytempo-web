@@ -596,3 +596,10 @@ section.tight.statement-only { padding: 56px 0 8px; }
   .difference-row { grid-template-columns: 1fr; gap: 40px; }
   .difference { max-width: none; }
 }
+
+/* 워드마크의 ™ — 상표 기호는 워드마크의 일부가 아니라 첨자다.
+   본문 크기로 붙으면 소문자 로고의 균형이 깨진다. */
+.brand-tm {
+  font-size: 0.55em; font-weight: 500; letter-spacing: 0;
+  vertical-align: super; margin-left: 1px;
+}
