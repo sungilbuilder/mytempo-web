@@ -603,3 +603,38 @@ section.tight.statement-only { padding: 56px 0 8px; }
   font-size: 0.55em; font-weight: 500; letter-spacing: 0;
   vertical-align: super; margin-left: 1px;
 }
+
+/* ---------- 언어 전환 ----------
+   자동 전환만 있고 되돌릴 방법이 없으면 곤란하다. 어느 쪽 언어로 보고 있든
+   반대쪽으로 갈 길이 항상 보여야 한다. */
+.lang-switch {
+  display: inline-flex; align-items: center;
+  border: 1px solid var(--line); border-radius: 999px;
+  overflow: hidden; flex-shrink: 0; margin-left: 4px;
+}
+.lang-switch a {
+  font-family: var(--font-display);
+  font-size: 12px; font-weight: 700; letter-spacing: 0.03em;
+  padding: 7px 11px; text-decoration: none; color: var(--subtle); line-height: 1;
+}
+.lang-switch a:hover { color: var(--ink); }
+.lang-switch a[aria-current] { background: var(--green); color: var(--on-primary); }
+
+/* 자동 전환됐을 때 뜨는 안내 줄 — 원치 않으면 한 번에 되돌릴 수 있어야 한다 */
+.lang-notice {
+  background: var(--surface-2); border-bottom: 1px solid var(--line);
+  font-size: 13px; color: var(--muted);
+}
+.lang-notice .wrap {
+  display: flex; align-items: center; justify-content: center; gap: 14px;
+  padding-top: 10px; padding-bottom: 10px; flex-wrap: wrap;
+}
+.lang-notice a { color: var(--green); font-weight: 700; text-decoration: none; }
+.lang-notice button {
+  font: inherit; border: none; background: none; color: var(--subtle);
+  cursor: pointer; padding: 0; text-decoration: underline;
+}
+
+@media (max-width: 940px) {
+  .lang-switch { margin-left: 0; }
+}
