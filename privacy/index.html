@@ -2,11 +2,37 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
+<script>
+/* 브라우저 언어에 한국어가 없으면 영어판으로 한 번 보낸다.
+
+   ⚠️ 크롤러·미리보기 봇은 제외한다. Googlebot은 JS 렌더링을 영어 환경으로 도는데
+   조건 없이 넘겨버리면 이 페이지가 "/en/privacy/ 로 리다이렉트"로 색인돼 국내 검색에서 밀린다.
+   카카오톡·슬랙 링크 미리보기도 한국어 OG를 받아야 한다.
+
+   IP로 국가를 보지 않는다 — GitHub Pages엔 서버 로직이 없기도 하지만,
+   해외 사는 한국인에게 영어를 띄우는 건 애초에 틀린 판단이다. 읽는 언어가 기준이다.
+   ?lang=ko 또는 KO/EN 토글로 고른 선택은 localStorage에 남아 이 로직보다 우선한다. */
+(function(){try{
+  var ua = navigator.userAgent || '';
+  if (/bot|crawl|spider|slurp|bingpreview|facebookexternalhit|kakaotalk|slackbot|twitterbot|discordbot|whatsapp|embedly|telegrambot|linkedinbot|applebot|w3c_validator/i.test(ua)) return;
+  var q = location.search;
+  if (q.indexOf('lang=ko') > -1) { try{localStorage.setItem('mytempo:lang','ko');}catch(e){} return; }
+  if (localStorage.getItem('mytempo:lang')) return;
+  var langs = (navigator.languages && navigator.languages.length) ? navigator.languages : [navigator.language || ''];
+  for (var i = 0; i < langs.length; i++) if (/^ko/i.test(langs[i])) return;
+  try{sessionStorage.setItem('mytempo:autoLang','1');}catch(e){}
+  location.replace('/en/privacy/' + q + (location.hash || ''));
+}catch(e){}})();
+</script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>개인정보처리방침 — mytempo</title>
 <meta name="theme-color" content="#FBFAF6" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#0D110D" media="(prefers-color-scheme: dark)">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='6' fill='%233F6136'/%3E%3Cpath d='M 12.802 2.835 A 9.2 9.2 0 1 1 2.940 13.598' fill='none' stroke='%23F2F5EE' stroke-width='2' stroke-linecap='round'/%3E%3Cpath d='M 2.800 12.000 A 9.2 9.2 0 0 1 11.198 2.835' fill='none' stroke='%23D9B84A' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="canonical" href="https://mytempo.co.kr/privacy/">
+<link rel="alternate" hreflang="ko" href="https://mytempo.co.kr/privacy/">
+<link rel="alternate" hreflang="en" href="https://mytempo.co.kr/en/privacy/">
+<link rel="alternate" hreflang="x-default" href="https://mytempo.co.kr/privacy/">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=Space+Grotesk:wght@500;700&display=swap">
@@ -26,6 +52,10 @@
       <a href="/#features">기능</a>
       <a href="/#pricing">가격</a>
       <a href="/#trust">프라이버시</a>
+    </div>
+    <div class="lang-switch" role="group" aria-label="언어">
+      <a href="/privacy/?lang=ko" hreflang="ko" lang="ko" aria-current="true">KO</a>
+      <a href="/en/privacy/" hreflang="en" lang="en">EN</a>
     </div>
   </div>
 </nav>
@@ -99,5 +129,11 @@
   </div>
 </footer>
 
+<script>
+/* 언어를 직접 고르면 기억한다 — 다음 방문에 자동 전환이 그 선택을 덮어쓰지 않도록. */
+(function(){var s=document.querySelector(".lang-switch");if(!s)return;
+  s.addEventListener("click",function(e){var a=e.target.closest("a");if(!a)return;
+    try{localStorage.setItem("mytempo:lang",a.getAttribute("hreflang"));}catch(err){}});})();
+</script>
 </body>
 </html>
