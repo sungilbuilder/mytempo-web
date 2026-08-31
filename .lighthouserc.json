@@ -8,7 +8,10 @@
         "/privacy/index.html",
         "/terms/index.html"
       ],
-      "numberOfRuns": 1
+      "numberOfRuns": 1,
+      "settings": {
+        "chromeFlags": "--lang=ko-KR"
+      }
     },
     "assert": {
       "assertions": {

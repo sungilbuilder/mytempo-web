@@ -639,7 +639,7 @@ section.tight.statement-only { padding: 56px 0 8px; }
 }
 .lang-notice a { color: var(--green); font-weight: 700; text-decoration: none; }
 .lang-notice button {
-  font: inherit; border: none; background: none; color: var(--subtle);
+  font: inherit; border: none; background: none; color: var(--muted);
   cursor: pointer; padding: 0; text-decoration: underline;
 }
 
