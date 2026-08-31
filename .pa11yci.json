@@ -1,0 +1,17 @@
+{
+  "defaults": {
+    "standard": "WCAG2AA",
+    "timeout": 30000,
+    "chromeLaunchConfig": {
+      "args": ["--no-sandbox"]
+    }
+  },
+  "urls": [
+    "http://localhost:8931/index.html",
+    "http://localhost:8931/en/index.html",
+    "http://localhost:8931/privacy/index.html",
+    "http://localhost:8931/terms/index.html",
+    "http://localhost:8931/en/privacy/index.html",
+    "http://localhost:8931/en/terms/index.html"
+  ]
+}
