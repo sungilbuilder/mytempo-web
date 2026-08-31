@@ -180,7 +180,7 @@ h2.section-title { font-size: clamp(26px, 4vw, 40px); font-weight: 800; line-hei
   padding: 14px 22px; border-radius: var(--radius-sm); text-decoration: none;
 }
 .btn-ghost:hover { border-color: var(--green); color: var(--green); }
-.cta-note { font-size: 13px; color: var(--subtle); margin: 12px 0 0; }
+.cta-note { font-size: 13px; color: var(--muted); margin: 12px 0 0; }
 .store-row { display: flex; align-items: center; gap: 12px; margin-top: 26px; flex-wrap: wrap; }
 .store-badge {
   display: inline-flex; align-items: center; gap: 9px;
@@ -318,7 +318,7 @@ h2.section-title { font-size: clamp(26px, 4vw, 40px); font-weight: 800; line-hei
   width: 13px; height: 13px; border-radius: 50%; background: var(--ink);
   border: 3px solid var(--surface); box-shadow: 0 0 0 1.5px var(--ink); flex-shrink: 0; margin: 0 -4px; z-index: 1;
 }
-.marks-legend { display: flex; justify-content: space-between; font-size: 10px; color: var(--subtle); margin-top: 8px; }
+.marks-legend { display: flex; justify-content: space-between; font-size: 10px; color: var(--muted); margin-top: 8px; }
 
 /* 사운드 웨이브 데모 */
 .wave { display: flex; align-items: flex-end; gap: 4px; height: 44px; width: 100%; }
@@ -331,7 +331,7 @@ h2.section-title { font-size: clamp(26px, 4vw, 40px); font-weight: 800; line-hei
 .compare-bar { position: relative; height: 10px; border-radius: 999px; background: var(--surface-2); }
 .compare-range { position: absolute; left: 34%; width: 32%; top: 0; bottom: 0; border-radius: 999px; background: color-mix(in srgb, var(--green) 32%, transparent); }
 .compare-you { position: absolute; left: 46%; top: -4px; width: 18px; height: 18px; border-radius: 50%; background: var(--gold); border: 3px solid var(--surface); }
-.compare-legend { display: flex; justify-content: space-between; font-size: 10px; color: var(--subtle); margin-top: 10px; }
+.compare-legend { display: flex; justify-content: space-between; font-size: 10px; color: var(--muted); margin-top: 10px; }
 
 /* ---------- Feature bento ---------- */
 .grid-4 {
@@ -446,7 +446,7 @@ footer .wrap { display: flex; flex-wrap: wrap; align-items: center; justify-cont
 .footer-links { display: flex; gap: 20px; font-size: 13px; color: var(--muted); flex-wrap: wrap; }
 .footer-links a { text-decoration: none; }
 .footer-links a:hover { color: var(--ink); }
-.footer-copy { font-size: 12px; color: var(--subtle); }
+.footer-copy { font-size: 12px; color: var(--muted); }
 
 /* ---------- Responsive ---------- */
 @media (max-width: 940px) {
@@ -545,7 +545,9 @@ section.tight.statement-only { padding: 56px 0 8px; }
 }
 
 /* 가격: Free에 "없는 것"도 정직하게 표기 — 무료 범위를 흐리지 않는 게 이 브랜드의 원칙이다 */
-.price-card li.off { color: var(--subtle); }
+/* 2026-08-31: 텍스트는 --subtle(3.06:1)이 WCAG AA(4.5:1) 미달이라 --muted로.
+   장식용 아이콘(아래 ::before)은 비텍스트 대비 기준(3:1)을 충족해 그대로 둔다. */
+.price-card li.off { color: var(--muted); }
 .price-card li.off::before {
   border: none; transform: none; left: 3px; top: 18px;
   width: 11px; height: 11px;
@@ -563,7 +565,7 @@ section.tight.statement-only { padding: 56px 0 8px; }
 
 .price-assure {
   margin: 24px 0 0; font-size: 12px; font-weight: 700;
-  letter-spacing: 0.08em; color: var(--subtle); text-transform: uppercase;
+  letter-spacing: 0.08em; color: var(--muted); text-transform: uppercase;
 }
 
 /* ---------- 포지셔닝 밴드 안의 템포 링 ----------
