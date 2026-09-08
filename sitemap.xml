@@ -39,4 +39,16 @@
     <xhtml:link rel="alternate" hreflang="ko" href="https://mytempo.co.kr/terms/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://mytempo.co.kr/en/terms/"/>
   </url>
+  <url>
+    <loc>https://mytempo.co.kr/oss/</loc>
+    <lastmod>2026-09-08</lastmod>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://mytempo.co.kr/oss/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mytempo.co.kr/en/oss/"/>
+  </url>
+  <url>
+    <loc>https://mytempo.co.kr/en/oss/</loc>
+    <lastmod>2026-09-08</lastmod>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://mytempo.co.kr/oss/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mytempo.co.kr/en/oss/"/>
+  </url>
 </urlset>

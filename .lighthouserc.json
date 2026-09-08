@@ -6,7 +6,8 @@
         "/index.html",
         "/en/index.html",
         "/privacy/index.html",
-        "/terms/index.html"
+        "/terms/index.html",
+        "/oss/index.html"
       ],
       "numberOfRuns": 1,
       "settings": {

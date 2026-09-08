@@ -12,6 +12,8 @@
     "http://localhost:8931/privacy/index.html",
     "http://localhost:8931/terms/index.html",
     "http://localhost:8931/en/privacy/index.html",
-    "http://localhost:8931/en/terms/index.html"
+    "http://localhost:8931/en/terms/index.html",
+    "http://localhost:8931/oss/index.html",
+    "http://localhost:8931/en/oss/index.html"
   ]
 }

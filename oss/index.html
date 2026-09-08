@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-pxG6490J7cBGUIeziwgB1D8mgFdZibSGX1IsA8VRiEo=' 'sha256-WKtGpikDoucQJlkSrUSk9+GP2khIKWFWPQ9ZaY7mBfA='; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; form-action 'self'; base-uri 'none'; object-src 'none';">
+<script>
+/* 브라우저 언어에 한국어가 없으면 영어판으로 한 번 보낸다.
+
+   ⚠️ 크롤러·미리보기 봇은 제외한다. Googlebot은 JS 렌더링을 영어 환경으로 도는데
+   조건 없이 넘겨버리면 이 페이지가 "/en/oss/ 로 리다이렉트"로 색인돼 국내 검색에서 밀린다.
+   카카오톡·슬랙 링크 미리보기도 한국어 OG를 받아야 한다.
+
+   IP로 국가를 보지 않는다 — GitHub Pages엔 서버 로직이 없기도 하지만,
+   해외 사는 한국인에게 영어를 띄우는 건 애초에 틀린 판단이다. 읽는 언어가 기준이다.
+   ?lang=ko 또는 KO/EN 토글로 고른 선택은 localStorage에 남아 이 로직보다 우선한다. */
+(function(){try{
+  var ua = navigator.userAgent || '';
+  if (/bot|crawl|spider|slurp|bingpreview|facebookexternalhit|kakaotalk|slackbot|twitterbot|discordbot|whatsapp|embedly|telegrambot|linkedinbot|applebot|w3c_validator/i.test(ua)) return;
+  var q = location.search;
+  if (q.indexOf('lang=ko') > -1) { try{localStorage.setItem('mytempo:lang','ko');}catch(e){} return; }
+  if (localStorage.getItem('mytempo:lang')) return;
+  var langs = (navigator.languages && navigator.languages.length) ? navigator.languages : [navigator.language || ''];
+  for (var i = 0; i < langs.length; i++) if (/^ko/i.test(langs[i])) return;
+  try{sessionStorage.setItem('mytempo:autoLang','1');}catch(e){}
+  location.replace('/en/oss/' + q + (location.hash || ''));
+}catch(e){}})();
+</script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>오픈소스 라이선스 고지 — mytempo</title>
+<meta name="theme-color" content="#FBFAF6" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0D110D" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='6' fill='%233F6136'/%3E%3Cpath d='M 12.802 2.835 A 9.2 9.2 0 1 1 2.940 13.598' fill='none' stroke='%23F2F5EE' stroke-width='2' stroke-linecap='round'/%3E%3Cpath d='M 2.800 12.000 A 9.2 9.2 0 0 1 11.198 2.835' fill='none' stroke='%23D9B84A' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="canonical" href="https://mytempo.co.kr/oss/">
+<link rel="alternate" hreflang="ko" href="https://mytempo.co.kr/oss/">
+<link rel="alternate" hreflang="en" href="https://mytempo.co.kr/en/oss/">
+<link rel="alternate" hreflang="x-default" href="https://mytempo.co.kr/oss/">
+<link rel="stylesheet" href="/assets/fonts.css">
+<link rel="stylesheet" href="/assets/style.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="wrap">
+    <a class="brand" href="/">
+      <span class="brand-mark">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M 12.802 2.835 A 9.2 9.2 0 1 1 2.940 13.598" style="stroke:var(--on-primary)" stroke-width="2" stroke-linecap="round"/><path d="M 2.800 12.000 A 9.2 9.2 0 0 1 11.198 2.835" style="stroke:var(--gold)" stroke-width="2" stroke-linecap="round"/></svg>
+      </span>
+      <span class="brand-word">mytempo</span>
+    </a>
+    <div class="nav-links">
+      <a href="/#features">기능</a>
+      <a href="/#pricing">가격</a>
+      <a href="/#trust">프라이버시</a>
+    </div>
+    <div class="lang-switch" role="group" aria-label="언어">
+      <a href="/oss/?lang=ko" hreflang="ko" lang="ko" aria-current="true">KO</a>
+      <a href="/en/oss/" hreflang="en" lang="en">EN</a>
+    </div>
+  </div>
+</nav>
+
+<header class="legal-header">
+  <div class="wrap">
+    <a class="back-link" href="/">← 홈으로</a>
+    <p class="eyebrow">Open Source Notices</p>
+    <h1>오픈소스 라이선스 고지</h1>
+    <p class="legal-meta">최종 갱신: 2026-09-08</p>
+  </div>
+</header>
+
+<div class="wrap">
+<article class="legal-body">
+
+<p>마이템포(mytempo) 앱은 아래 오픈소스 소프트웨어를 사용해 제작되었습니다. 각 패키지의 저작권은 해당 저작권자에게 있으며, 명시된 라이선스 조건에 따라 사용됩니다.</p>
+
+<p>이 앱은 760개의 오픈소스 소프트웨어 패키지를 사용합니다. 사용 라이선스 종류별 개수는 다음과 같습니다.</p>
+<table class="oss-summary"><thead><tr><th>라이선스</th><th>패키지 수</th></tr></thead><tbody>
+<tr><td>MIT</td><td>641</td></tr>
+<tr><td>ISC</td><td>44</td></tr>
+<tr><td>BSD-3-Clause</td><td>18</td></tr>
+<tr><td>Apache-2.0</td><td>15</td></tr>
+<tr><td>BSD-2-Clause</td><td>15</td></tr>
+<tr><td>BlueOak-1.0.0</td><td>9</td></tr>
+<tr><td>MPL-2.0</td><td>4</td></tr>
+<tr><td>MIT AND OFL-1.1</td><td>2</td></tr>
+<tr><td>Unlicense</td><td>2</td></tr>
+<tr><td>0BSD</td><td>2</td></tr>
+<tr><td>(MIT OR CC0-1.0)</td><td>2</td></tr>
+<tr><td>Python-2.0</td><td>1</td></tr>
+<tr><td>CC-BY-4.0</td><td>1</td></tr>
+<tr><td>CC0-1.0</td><td>1</td></tr>
+<tr><td>(BSD-3-Clause OR GPL-2.0)</td><td>1</td></tr>
+<tr><td>Apache 2.0</td><td>1</td></tr>
+<tr><td>(BSD-2-Clause OR MIT OR Apache-2.0)</td><td>1</td></tr>
+</tbody></table>
+<h2>폰트 라이선스</h2>
+<p>앱 내 서체 <strong>Noto Sans KR</strong>, <strong>Space Grotesk</strong>는 <strong>SIL Open Font License 1.1</strong>을 따릅니다.</p>
+<h2>전체 패키지 목록</h2>
+<details><summary>MIT (641개)</summary><ul class="oss-list">
+<li>@0no-co/graphql.web@1.3.4</li>
+<li>@alloc/quick-lru@5.2.0</li>
+<li>@babel/code-frame@7.10.4</li>
+<li>@babel/code-frame@7.29.7</li>
+<li>@babel/compat-data@7.29.7</li>
+<li>@babel/core@7.29.7</li>
+<li>@babel/generator@7.29.8</li>
+<li>@babel/helper-annotate-as-pure@7.29.7</li>
+<li>@babel/helper-compilation-targets@7.29.7</li>
+<li>@babel/helper-create-class-features-plugin@7.29.7</li>
+<li>@babel/helper-create-regexp-features-plugin@7.29.7</li>
+<li>@babel/helper-define-polyfill-provider@0.6.8</li>
+<li>@babel/helper-globals@7.29.7</li>
+<li>@babel/helper-member-expression-to-functions@7.29.7</li>
+<li>@babel/helper-module-imports@7.29.7</li>
+<li>@babel/helper-module-transforms@7.29.7</li>
+<li>@babel/helper-optimise-call-expression@7.29.7</li>
+<li>@babel/helper-plugin-utils@7.29.7</li>
+<li>@babel/helper-remap-async-to-generator@7.29.7</li>
+<li>@babel/helper-replace-supers@7.29.7</li>
+<li>@babel/helper-skip-transparent-expression-wrappers@7.29.7</li>
+<li>@babel/helper-string-parser@7.29.7</li>
+<li>@babel/helper-validator-identifier@7.29.7</li>
+<li>@babel/helper-validator-option@7.29.7</li>
+<li>@babel/helper-wrap-function@7.29.7</li>
+<li>@babel/helpers@7.29.7</li>
+<li>@babel/highlight@7.25.9</li>
+<li>@babel/parser@7.29.8</li>
+<li>@babel/plugin-proposal-decorators@7.29.7</li>
+<li>@babel/plugin-proposal-export-default-from@7.29.7</li>
+<li>@babel/plugin-syntax-async-generators@7.8.4</li>
+<li>@babel/plugin-syntax-bigint@7.8.3</li>
+<li>@babel/plugin-syntax-class-properties@7.12.13</li>
+<li>@babel/plugin-syntax-class-static-block@7.14.5</li>
+<li>@babel/plugin-syntax-decorators@7.29.7</li>
+<li>@babel/plugin-syntax-dynamic-import@7.8.3</li>
+<li>@babel/plugin-syntax-export-default-from@7.29.7</li>
+<li>@babel/plugin-syntax-flow@7.29.7</li>
+<li>@babel/plugin-syntax-import-attributes@7.29.7</li>
+<li>@babel/plugin-syntax-import-meta@7.10.4</li>
+<li>@babel/plugin-syntax-json-strings@7.8.3</li>
+<li>@babel/plugin-syntax-jsx@7.29.7</li>
+<li>@babel/plugin-syntax-logical-assignment-operators@7.10.4</li>
+<li>@babel/plugin-syntax-nullish-coalescing-operator@7.8.3</li>
+<li>@babel/plugin-syntax-numeric-separator@7.10.4</li>
+<li>@babel/plugin-syntax-object-rest-spread@7.8.3</li>
+<li>@babel/plugin-syntax-optional-catch-binding@7.8.3</li>
+<li>@babel/plugin-syntax-optional-chaining@7.8.3</li>
+<li>@babel/plugin-syntax-private-property-in-object@7.14.5</li>
+<li>@babel/plugin-syntax-top-level-await@7.14.5</li>
+<li>@babel/plugin-syntax-typescript@7.29.7</li>
+<li>@babel/plugin-transform-arrow-functions@7.29.7</li>
+<li>@babel/plugin-transform-async-generator-functions@7.29.7</li>
+<li>@babel/plugin-transform-async-to-generator@7.29.7</li>
+<li>@babel/plugin-transform-block-scoping@7.29.7</li>
+<li>@babel/plugin-transform-class-properties@7.29.7</li>
+<li>@babel/plugin-transform-class-static-block@7.29.7</li>
+<li>@babel/plugin-transform-classes@7.29.7</li>
+<li>@babel/plugin-transform-computed-properties@7.29.7</li>
+<li>@babel/plugin-transform-destructuring@7.29.7</li>
+<li>@babel/plugin-transform-export-namespace-from@7.29.7</li>
+<li>@babel/plugin-transform-flow-strip-types@7.29.7</li>
+<li>@babel/plugin-transform-for-of@7.29.7</li>
+<li>@babel/plugin-transform-function-name@7.29.7</li>
+<li>@babel/plugin-transform-literals@7.29.7</li>
+<li>@babel/plugin-transform-logical-assignment-operators@7.29.7</li>
+<li>@babel/plugin-transform-modules-commonjs@7.29.7</li>
+<li>@babel/plugin-transform-named-capturing-groups-regex@7.29.7</li>
+<li>@babel/plugin-transform-nullish-coalescing-operator@7.29.7</li>
+<li>@babel/plugin-transform-numeric-separator@7.29.7</li>
+<li>@babel/plugin-transform-object-rest-spread@7.29.7</li>
+<li>@babel/plugin-transform-optional-catch-binding@7.29.7</li>
+<li>@babel/plugin-transform-optional-chaining@7.29.7</li>
+<li>@babel/plugin-transform-parameters@7.29.7</li>
+<li>@babel/plugin-transform-private-methods@7.29.7</li>
+<li>@babel/plugin-transform-private-property-in-object@7.29.7</li>
+<li>@babel/plugin-transform-react-display-name@7.29.7</li>
+<li>@babel/plugin-transform-react-jsx-development@7.29.7</li>
+<li>@babel/plugin-transform-react-jsx-self@7.29.7</li>
+<li>@babel/plugin-transform-react-jsx-source@7.29.7</li>
+<li>@babel/plugin-transform-react-jsx@7.29.7</li>
+<li>@babel/plugin-transform-react-pure-annotations@7.29.7</li>
+<li>@babel/plugin-transform-regenerator@7.29.7</li>
+<li>@babel/plugin-transform-runtime@7.29.7</li>
+<li>@babel/plugin-transform-shorthand-properties@7.29.7</li>
+<li>@babel/plugin-transform-spread@7.29.7</li>
+<li>@babel/plugin-transform-sticky-regex@7.29.7</li>
+<li>@babel/plugin-transform-template-literals@7.29.7</li>
+<li>@babel/plugin-transform-typescript@7.29.7</li>
+<li>@babel/plugin-transform-unicode-regex@7.29.7</li>
+<li>@babel/preset-react@7.29.7</li>
+<li>@babel/preset-typescript@7.29.7</li>
+<li>@babel/runtime@7.29.7</li>
+<li>@babel/template@7.29.7</li>
+<li>@babel/traverse@7.29.7</li>
+<li>@babel/traverse@7.29.8</li>
+<li>@babel/types@7.29.8</li>
+<li>@egjs/hammerjs@2.0.17</li>
+<li>@expo/cli@54.0.27</li>
+<li>@expo/code-signing-certificates@0.0.6</li>
+<li>@expo/config-plugins@54.0.5</li>
+<li>@expo/config-types@54.0.10</li>
+<li>@expo/config@12.0.14</li>
+<li>@expo/devcert@1.2.1</li>
+<li>@expo/devtools@0.1.8</li>
+<li>@expo/env@2.0.12</li>
+<li>@expo/fingerprint@0.15.5</li>
+<li>@expo/image-utils@0.8.15</li>
+<li>@expo/json-file@10.0.16</li>
+<li>@expo/json-file@10.2.0</li>
+<li>@expo/json-file@11.0.1</li>
+<li>@expo/metro-config@54.0.17</li>
+<li>@expo/metro-runtime@6.1.2</li>
+<li>@expo/metro@54.2.0</li>
+<li>@expo/osascript@2.7.1</li>
+<li>@expo/package-manager@1.13.1</li>
+<li>@expo/plist@0.4.9</li>
+<li>@expo/prebuild-config@54.0.9</li>
+<li>@expo/require-utils@55.0.6</li>
+<li>@expo/schema-utils@0.1.9</li>
+<li>@expo/sdk-runtime-versions@1.0.0</li>
+<li>@expo/spawn-async@1.8.0</li>
+<li>@expo/sudo-prompt@9.3.2</li>
+<li>@expo/vector-icons@15.1.1</li>
+<li>@expo/ws-tunnel@1.0.6</li>
+<li>@istanbuljs/schema@0.1.6</li>
+<li>@jest/create-cache-key-function@29.7.0</li>
+<li>@jest/environment@29.7.0</li>
+<li>@jest/fake-timers@29.7.0</li>
+<li>@jest/schemas@29.6.3</li>
+<li>@jest/transform@29.7.0</li>
+<li>@jest/types@29.6.3</li>
+<li>@jridgewell/gen-mapping@0.3.13</li>
+<li>@jridgewell/remapping@2.3.5</li>
+<li>@jridgewell/resolve-uri@3.1.2</li>
+<li>@jridgewell/source-map@0.3.11</li>
+<li>@jridgewell/sourcemap-codec@1.5.5</li>
+<li>@jridgewell/trace-mapping@0.3.31</li>
+<li>@nodelib/fs.scandir@2.1.5</li>
+<li>@nodelib/fs.stat@2.0.5</li>
+<li>@nodelib/fs.walk@1.2.8</li>
+<li>@radix-ui/primitive@1.1.7</li>
+<li>@radix-ui/react-collection@1.1.15</li>
+<li>@radix-ui/react-compose-refs@1.1.2</li>
+<li>@radix-ui/react-compose-refs@1.1.5</li>
+<li>@radix-ui/react-context@1.2.2</li>
+<li>@radix-ui/react-dialog@1.1.23</li>
+<li>@radix-ui/react-direction@1.1.4</li>
+<li>@radix-ui/react-dismissable-layer@1.1.19</li>
+<li>@radix-ui/react-focus-guards@1.1.6</li>
+<li>@radix-ui/react-focus-scope@1.1.16</li>
+<li>@radix-ui/react-id@1.1.4</li>
+<li>@radix-ui/react-portal@1.1.17</li>
+<li>@radix-ui/react-presence@1.1.10</li>
+<li>@radix-ui/react-primitive@2.1.10</li>
+<li>@radix-ui/react-roving-focus@1.1.19</li>
+<li>@radix-ui/react-slot@1.2.0</li>
+<li>@radix-ui/react-slot@1.3.3</li>
+<li>@radix-ui/react-tabs@1.1.21</li>
+<li>@radix-ui/react-use-callback-ref@1.1.4</li>
+<li>@radix-ui/react-use-controllable-state@1.2.6</li>
+<li>@radix-ui/react-use-effect-event@0.0.5</li>
+<li>@radix-ui/react-use-is-hydrated@0.1.3</li>
+<li>@radix-ui/react-use-layout-effect@1.1.4</li>
+<li>@react-native-async-storage/async-storage@2.2.0</li>
+<li>@react-native/assets-registry@0.81.5</li>
+<li>@react-native/babel-plugin-codegen@0.81.5</li>
+<li>@react-native/babel-preset@0.81.5</li>
+<li>@react-native/codegen@0.81.5</li>
+<li>@react-native/community-cli-plugin@0.81.5</li>
+<li>@react-native/dev-middleware@0.81.5</li>
+<li>@react-native/gradle-plugin@0.81.5</li>
+<li>@react-native/js-polyfills@0.81.5</li>
+<li>@react-native/normalize-colors@0.74.89</li>
+<li>@react-native/normalize-colors@0.81.5</li>
+<li>@react-native/virtualized-lists@0.81.5</li>
+<li>@react-navigation/bottom-tabs@7.18.14</li>
+<li>@react-navigation/core@7.21.11</li>
+<li>@react-navigation/elements@2.9.36</li>
+<li>@react-navigation/native-stack@7.18.6</li>
+<li>@react-navigation/native@7.3.14</li>
+<li>@react-navigation/routers@7.6.4</li>
+<li>@sinclair/typebox@0.27.12</li>
+<li>@types/babel__core@7.20.5</li>
+<li>@types/babel__generator@7.27.0</li>
+<li>@types/babel__template@7.4.4</li>
+<li>@types/babel__traverse@7.28.0</li>
+<li>@types/graceful-fs@4.1.9</li>
+<li>@types/hammerjs@2.0.46</li>
+<li>@types/istanbul-lib-coverage@2.0.6</li>
+<li>@types/istanbul-lib-report@3.0.3</li>
+<li>@types/istanbul-reports@3.0.4</li>
+<li>@types/node@18.19.130</li>
+<li>@types/react@19.1.17</li>
+<li>@types/stack-utils@2.0.3</li>
+<li>@types/yargs-parser@21.0.3</li>
+<li>@types/yargs@17.0.35</li>
+<li>@urql/core@5.2.0</li>
+<li>@urql/exchange-retry@1.3.2</li>
+<li>@xmldom/xmldom@0.8.13</li>
+<li>@xmldom/xmldom@0.9.10</li>
+<li>abort-controller@3.0.0</li>
+<li>accepts@1.3.8</li>
+<li>accepts@2.0.0</li>
+<li>acorn@8.18.0</li>
+<li>agent-base@7.1.4</li>
+<li>agent-cli-detector@0.1.7</li>
+<li>ajv@8.20.0</li>
+<li>anser@1.4.10</li>
+<li>ansi-escapes@4.3.2</li>
+<li>ansi-regex@4.1.1</li>
+<li>ansi-regex@5.0.1</li>
+<li>ansi-styles@3.2.1</li>
+<li>ansi-styles@4.3.0</li>
+<li>ansi-styles@5.2.0</li>
+<li>any-promise@1.3.0</li>
+<li>arg@5.0.2</li>
+<li>argparse@1.0.10</li>
+<li>aria-hidden@1.2.6</li>
+<li>array-timsort@1.0.3</li>
+<li>asap@2.0.6</li>
+<li>async-limiter@1.0.1</li>
+<li>babel-jest@29.7.0</li>
+<li>babel-plugin-jest-hoist@29.6.3</li>
+<li>babel-plugin-polyfill-corejs2@0.4.17</li>
+<li>babel-plugin-polyfill-corejs3@0.13.0</li>
+<li>babel-plugin-polyfill-regenerator@0.6.8</li>
+<li>babel-plugin-react-compiler@1.0.0</li>
+<li>babel-plugin-react-native-web@0.21.2</li>
+<li>babel-plugin-syntax-hermes-parser@0.29.1</li>
+<li>babel-plugin-transform-flow-enums@0.0.2</li>
+<li>babel-preset-current-node-syntax@1.2.0</li>
+<li>babel-preset-expo@54.0.12</li>
+<li>babel-preset-jest@29.6.3</li>
+<li>balanced-match@1.0.2</li>
+<li>balanced-match@4.0.4</li>
+<li>base64-js@1.5.1</li>
+<li>better-opn@3.0.2</li>
+<li>binary-extensions@2.3.0</li>
+<li>bplist-creator@0.1.0</li>
+<li>bplist-parser@0.3.1</li>
+<li>bplist-parser@0.3.2</li>
+<li>brace-expansion@1.1.17</li>
+<li>brace-expansion@2.1.4</li>
+<li>brace-expansion@5.0.9</li>
+<li>braces@3.0.3</li>
+<li>browserslist@4.28.7</li>
+<li>buffer-from@1.1.2</li>
+<li>buffer@5.7.1</li>
+<li>bytes@3.1.2</li>
+<li>camelcase-css@2.0.1</li>
+<li>camelcase@5.3.1</li>
+<li>camelcase@6.3.0</li>
+<li>chalk@2.4.2</li>
+<li>chalk@4.1.2</li>
+<li>chokidar@3.6.0</li>
+<li>ci-info@2.0.0</li>
+<li>ci-info@3.9.0</li>
+<li>cli-cursor@2.1.0</li>
+<li>cli-spinners@2.9.2</li>
+<li>client-only@0.0.1</li>
+<li>clone@1.0.4</li>
+<li>color-convert@1.9.3</li>
+<li>color-convert@2.0.1</li>
+<li>color-name@1.1.3</li>
+<li>color-name@1.1.4</li>
+<li>color-string@1.9.1</li>
+<li>color@4.2.3</li>
+<li>commander@12.1.0</li>
+<li>commander@2.20.3</li>
+<li>commander@4.1.1</li>
+<li>commander@7.2.0</li>
+<li>comment-json@4.6.2</li>
+<li>compressible@2.0.18</li>
+<li>compression@1.8.1</li>
+<li>concat-map@0.0.1</li>
+<li>connect@3.7.0</li>
+<li>convert-source-map@2.0.0</li>
+<li>core-js-compat@3.49.0</li>
+<li>cross-fetch@3.2.0</li>
+<li>cross-spawn@7.0.6</li>
+<li>css-in-js-utils@3.1.0</li>
+<li>css-tree@1.1.3</li>
+<li>cssesc@3.0.0</li>
+<li>csstype@3.2.3</li>
+<li>debug@2.6.9</li>
+<li>debug@3.2.7</li>
+<li>debug@4.4.3</li>
+<li>decode-uri-component@0.2.2</li>
+<li>deep-extend@0.6.0</li>
+<li>deepmerge@4.3.1</li>
+<li>defaults@1.0.4</li>
+<li>define-lazy-prop@2.0.0</li>
+<li>depd@2.0.0</li>
+<li>destroy@1.2.0</li>
+<li>detect-node-es@1.1.0</li>
+<li>dlv@1.1.3</li>
+<li>dom-serializer@2.0.0</li>
+<li>ee-first@1.1.1</li>
+<li>emoji-regex@8.0.0</li>
+<li>encodeurl@1.0.2</li>
+<li>encodeurl@2.0.0</li>
+<li>env-editor@0.4.2</li>
+<li>error-stack-parser@2.1.4</li>
+<li>es-errors@1.3.0</li>
+<li>escalade@3.2.0</li>
+<li>escape-html@1.0.3</li>
+<li>escape-string-regexp@1.0.5</li>
+<li>escape-string-regexp@2.0.0</li>
+<li>escape-string-regexp@4.0.0</li>
+<li>etag@1.8.1</li>
+<li>event-target-shim@5.0.1</li>
+<li>expo-asset@12.0.13</li>
+<li>expo-audio@1.1.1</li>
+<li>expo-blur@15.0.8</li>
+<li>expo-constants@18.0.14</li>
+<li>expo-dev-client@6.0.21</li>
+<li>expo-dev-launcher@6.0.21</li>
+<li>expo-dev-menu-interface@2.0.0</li>
+<li>expo-dev-menu@7.0.19</li>
+<li>expo-file-system@19.0.24</li>
+<li>expo-font@14.0.12</li>
+<li>expo-haptics@15.0.8</li>
+<li>expo-image-loader@6.0.0</li>
+<li>expo-image-picker@17.0.11</li>
+<li>expo-json-utils@0.15.0</li>
+<li>expo-keep-awake@15.0.8</li>
+<li>expo-linking@8.0.12</li>
+<li>expo-localization@17.0.9</li>
+<li>expo-manifests@1.0.11</li>
+<li>expo-modules-autolinking@3.0.27</li>
+<li>expo-modules-core@3.0.30</li>
+<li>expo-router@6.0.24</li>
+<li>expo-server@1.0.7</li>
+<li>expo-sharing@14.0.8</li>
+<li>expo-splash-screen@31.0.13</li>
+<li>expo-status-bar@3.0.9</li>
+<li>expo-updates-interface@2.0.0</li>
+<li>expo-video@3.0.16</li>
+<li>expo@54.0.37</li>
+<li>fast-deep-equal@3.1.3</li>
+<li>fast-glob@3.3.3</li>
+<li>fast-json-stable-stringify@2.1.0</li>
+<li>fbjs-css-vars@1.0.2</li>
+<li>fbjs@3.0.5</li>
+<li>fdir@6.5.0</li>
+<li>fill-range@7.1.1</li>
+<li>filter-obj@1.1.0</li>
+<li>finalhandler@1.1.2</li>
+<li>find-up@4.1.0</li>
+<li>flow-enums-runtime@0.0.6</li>
+<li>freeport-async@2.0.0</li>
+<li>fresh@0.5.2</li>
+<li>fsevents@2.3.3</li>
+<li>function-bind@1.1.2</li>
+<li>gensync@1.0.0-beta.2</li>
+<li>get-nonce@1.0.1</li>
+<li>get-package-type@0.1.0</li>
+<li>getenv@2.0.0</li>
+<li>has-flag@3.0.0</li>
+<li>has-flag@4.0.0</li>
+<li>hasown@2.0.4</li>
+<li>hermes-estree@0.29.1</li>
+<li>hermes-estree@0.32.0</li>
+<li>hermes-estree@0.35.0</li>
+<li>hermes-parser@0.29.1</li>
+<li>hermes-parser@0.32.0</li>
+<li>hermes-parser@0.35.0</li>
+<li>html-parse-stringify@4.0.1</li>
+<li>http-errors@2.0.1</li>
+<li>https-proxy-agent@7.0.6</li>
+<li>i18next@26.3.6</li>
+<li>ignore@5.3.2</li>
+<li>image-size@1.2.1</li>
+<li>imurmurhash@0.1.4</li>
+<li>inline-style-prefixer@7.0.1</li>
+<li>invariant@2.2.4</li>
+<li>is-arrayish@0.3.4</li>
+<li>is-binary-path@2.1.0</li>
+<li>is-core-module@2.16.2</li>
+<li>is-docker@2.2.1</li>
+<li>is-extglob@2.1.1</li>
+<li>is-fullwidth-code-point@3.0.0</li>
+<li>is-glob@4.0.3</li>
+<li>is-number@7.0.0</li>
+<li>is-plain-obj@2.1.0</li>
+<li>is-wsl@2.2.0</li>
+<li>jest-environment-node@29.7.0</li>
+<li>jest-get-type@29.6.3</li>
+<li>jest-haste-map@29.7.0</li>
+<li>jest-message-util@29.7.0</li>
+<li>jest-mock@29.7.0</li>
+<li>jest-regex-util@29.6.3</li>
+<li>jest-util@29.7.0</li>
+<li>jest-validate@29.7.0</li>
+<li>jest-worker@29.7.0</li>
+<li>jimp-compact@0.16.1</li>
+<li>jiti@1.21.7</li>
+<li>js-tokens@4.0.0</li>
+<li>js-yaml@3.15.0</li>
+<li>js-yaml@4.3.2</li>
+<li>jsesc@3.1.0</li>
+<li>json-schema-traverse@1.0.0</li>
+<li>json5@2.2.3</li>
+<li>kleur@3.0.3</li>
+<li>lan-network@0.2.1</li>
+<li>leven@3.1.0</li>
+<li>lilconfig@3.1.3</li>
+<li>lines-and-columns@1.2.4</li>
+<li>locate-path@5.0.0</li>
+<li>lodash.debounce@4.0.8</li>
+<li>lodash.throttle@4.1.1</li>
+<li>log-symbols@2.2.0</li>
+<li>loose-envify@1.4.0</li>
+<li>memoize-one@5.2.1</li>
+<li>memoize-one@6.0.0</li>
+<li>merge-options@3.0.4</li>
+<li>merge-stream@2.0.0</li>
+<li>merge2@1.4.1</li>
+<li>metro-babel-transformer@0.83.3</li>
+<li>metro-babel-transformer@0.83.7</li>
+<li>metro-cache-key@0.83.3</li>
+<li>metro-cache-key@0.83.7</li>
+<li>metro-cache@0.83.3</li>
+<li>metro-cache@0.83.7</li>
+<li>metro-config@0.83.3</li>
+<li>metro-config@0.83.7</li>
+<li>metro-core@0.83.3</li>
+<li>metro-core@0.83.7</li>
+<li>metro-file-map@0.83.3</li>
+<li>metro-file-map@0.83.7</li>
+<li>metro-minify-terser@0.83.3</li>
+<li>metro-minify-terser@0.83.7</li>
+<li>metro-resolver@0.83.3</li>
+<li>metro-resolver@0.83.7</li>
+<li>metro-runtime@0.83.3</li>
+<li>metro-runtime@0.83.7</li>
+<li>metro-source-map@0.83.3</li>
+<li>metro-source-map@0.83.7</li>
+<li>metro-symbolicate@0.83.3</li>
+<li>metro-symbolicate@0.83.7</li>
+<li>metro-transform-plugins@0.83.3</li>
+<li>metro-transform-plugins@0.83.7</li>
+<li>metro-transform-worker@0.83.3</li>
+<li>metro-transform-worker@0.83.7</li>
+<li>metro@0.83.3</li>
+<li>metro@0.83.7</li>
+<li>micromatch@4.0.8</li>
+<li>mime-db@1.52.0</li>
+<li>mime-db@1.54.0</li>
+<li>mime-types@2.1.35</li>
+<li>mime-types@3.0.2</li>
+<li>mime@1.6.0</li>
+<li>mimic-fn@1.2.0</li>
+<li>minimist@1.2.8</li>
+<li>minizlib@3.1.0</li>
+<li>mkdirp@1.0.4</li>
+<li>ms@2.0.0</li>
+<li>ms@2.1.3</li>
+<li>mz@2.7.0</li>
+<li>nanoid@3.3.16</li>
+<li>nativewind@4.2.6</li>
+<li>negotiator@0.6.3</li>
+<li>negotiator@0.6.4</li>
+<li>negotiator@1.0.0</li>
+<li>nested-error-stacks@2.0.1</li>
+<li>node-fetch@2.7.0</li>
+<li>node-int64@0.4.0</li>
+<li>node-releases@2.0.51</li>
+<li>normalize-path@3.0.0</li>
+<li>nullthrows@1.1.1</li>
+<li>ob1@0.83.3</li>
+<li>ob1@0.83.7</li>
+<li>object-assign@4.1.1</li>
+<li>object-hash@3.0.0</li>
+<li>on-finished@2.3.0</li>
+<li>on-finished@2.4.1</li>
+<li>on-headers@1.1.0</li>
+<li>onetime@2.0.1</li>
+<li>open@7.4.2</li>
+<li>open@8.4.2</li>
+<li>ora@3.4.0</li>
+<li>p-limit@2.3.0</li>
+<li>p-limit@3.1.0</li>
+<li>p-locate@4.1.0</li>
+<li>p-try@2.2.0</li>
+<li>parse-png@2.1.0</li>
+<li>parseurl@1.3.3</li>
+<li>path-exists@4.0.0</li>
+<li>path-is-absolute@1.0.1</li>
+<li>path-key@3.1.1</li>
+<li>path-parse@1.0.7</li>
+<li>picomatch@2.3.2</li>
+<li>picomatch@4.0.5</li>
+<li>pify@2.3.0</li>
+<li>pirates@4.0.7</li>
+<li>plist@3.1.1</li>
+<li>pngjs@3.4.0</li>
+<li>postcss-import@15.1.0</li>
+<li>postcss-js@4.1.0</li>
+<li>postcss-load-config@6.0.1</li>
+<li>postcss-nested@6.2.0</li>
+<li>postcss-selector-parser@6.1.4</li>
+<li>postcss-value-parser@4.2.0</li>
+<li>postcss@8.4.49</li>
+<li>pretty-bytes@5.6.0</li>
+<li>pretty-format@29.7.0</li>
+<li>progress@2.0.3</li>
+<li>promise@7.3.1</li>
+<li>promise@8.3.0</li>
+<li>prompts@2.4.2</li>
+<li>punycode@2.3.1</li>
+<li>query-string@7.1.3</li>
+<li>queue-microtask@1.2.3</li>
+<li>queue@6.0.2</li>
+<li>range-parser@1.2.1</li>
+<li>react-devtools-core@6.1.5</li>
+<li>react-dom@19.1.0</li>
+<li>react-fast-compare@3.2.2</li>
+<li>react-freeze@1.0.4</li>
+<li>react-i18next@17.0.11</li>
+<li>react-is@16.13.1</li>
+<li>react-is@18.3.1</li>
+<li>react-is@19.2.8</li>
+<li>react-native-audio-api@0.13.3</li>
+<li>react-native-css-interop@0.2.6</li>
+<li>react-native-gesture-handler@2.28.0</li>
+<li>react-native-is-edge-to-edge@1.3.1</li>
+<li>react-native-reanimated@4.1.7</li>
+<li>react-native-safe-area-context@5.6.2</li>
+<li>react-native-screens@4.16.0</li>
+<li>react-native-svg@15.12.1</li>
+<li>react-native-web@0.21.2</li>
+<li>react-native-worklets@0.5.1</li>
+<li>react-native@0.81.5</li>
+<li>react-refresh@0.14.2</li>
+<li>react-remove-scroll-bar@2.3.8</li>
+<li>react-remove-scroll@2.7.2</li>
+<li>react-style-singleton@2.2.3</li>
+<li>react@19.1.0</li>
+<li>read-cache@1.0.0</li>
+<li>readdirp@3.6.0</li>
+<li>regenerate-unicode-properties@10.2.2</li>
+<li>regenerate@1.4.2</li>
+<li>regenerator-runtime@0.13.11</li>
+<li>regexpu-core@6.4.0</li>
+<li>regjsgen@0.8.0</li>
+<li>require-directory@2.1.1</li>
+<li>require-from-string@2.0.2</li>
+<li>requireg@0.2.2</li>
+<li>resolve-from@5.0.0</li>
+<li>resolve-workspace-root@2.0.1</li>
+<li>resolve.exports@2.0.3</li>
+<li>resolve@1.22.12</li>
+<li>resolve@1.7.1</li>
+<li>restore-cursor@2.0.0</li>
+<li>reusify@1.1.0</li>
+<li>run-parallel@1.2.0</li>
+<li>safe-buffer@5.2.1</li>
+<li>scheduler@0.26.0</li>
+<li>send@0.19.2</li>
+<li>serialize-error@2.1.0</li>
+<li>serve-static@1.16.3</li>
+<li>server-only@0.0.1</li>
+<li>setimmediate@1.0.5</li>
+<li>sf-symbols-typescript@2.2.0</li>
+<li>shallowequal@1.1.0</li>
+<li>shebang-command@2.0.0</li>
+<li>shebang-regex@3.0.0</li>
+<li>shell-quote@1.10.0</li>
+<li>simple-plist@1.3.1</li>
+<li>simple-swizzle@0.2.4</li>
+<li>sisteransi@1.0.5</li>
+<li>slash@3.0.0</li>
+<li>slugify@1.6.9</li>
+<li>source-map-support@0.5.21</li>
+<li>split-on-first@1.1.0</li>
+<li>stack-utils@2.0.6</li>
+<li>stackframe@1.3.4</li>
+<li>stacktrace-parser@0.1.11</li>
+<li>standard-navigation@0.0.8</li>
+<li>statuses@1.5.0</li>
+<li>statuses@2.0.2</li>
+<li>strict-uri-encode@2.0.0</li>
+<li>string-width@4.2.3</li>
+<li>strip-ansi@5.2.0</li>
+<li>strip-ansi@6.0.1</li>
+<li>strip-json-comments@2.0.1</li>
+<li>structured-headers@0.4.1</li>
+<li>styleq@0.1.3</li>
+<li>sucrase@3.35.1</li>
+<li>supports-color@5.5.0</li>
+<li>supports-color@7.2.0</li>
+<li>supports-color@8.1.1</li>
+<li>supports-hyperlinks@2.3.0</li>
+<li>supports-preserve-symlinks-flag@1.0.0</li>
+<li>tailwindcss@3.4.19</li>
+<li>terminal-link@2.1.1</li>
+<li>thenify-all@1.6.0</li>
+<li>thenify@3.3.1</li>
+<li>throat@5.0.0</li>
+<li>tinyglobby@0.2.17</li>
+<li>to-regex-range@5.0.1</li>
+<li>toidentifier@1.0.1</li>
+<li>tr46@0.0.3</li>
+<li>type-detect@4.0.8</li>
+<li>ua-parser-js@1.0.41</li>
+<li>undici-types@5.26.5</li>
+<li>undici@6.28.1</li>
+<li>unicode-canonical-property-names-ecmascript@2.0.1</li>
+<li>unicode-match-property-ecmascript@2.0.0</li>
+<li>unicode-match-property-value-ecmascript@2.2.1</li>
+<li>unicode-property-aliases-ecmascript@2.2.0</li>
+<li>unpipe@1.0.0</li>
+<li>update-browserslist-db@1.2.3</li>
+<li>use-callback-ref@1.3.3</li>
+<li>use-latest-callback@0.2.6</li>
+<li>use-sidecar@1.1.3</li>
+<li>use-sync-external-store@1.6.0</li>
+<li>util-deprecate@1.0.2</li>
+<li>utils-merge@1.0.1</li>
+<li>uuid@7.0.3</li>
+<li>vary@1.1.2</li>
+<li>vaul@1.1.2</li>
+<li>vlq@1.0.1</li>
+<li>warn-once@0.1.1</li>
+<li>wcwidth@1.0.1</li>
+<li>whatwg-fetch@3.6.20</li>
+<li>whatwg-url-without-unicode@8.0.0-3</li>
+<li>whatwg-url@5.0.0</li>
+<li>wonka@6.3.6</li>
+<li>wrap-ansi@7.0.0</li>
+<li>ws@6.2.6</li>
+<li>ws@7.5.13</li>
+<li>ws@8.21.3</li>
+<li>xml2js@0.6.0</li>
+<li>xmlbuilder@11.0.1</li>
+<li>xmlbuilder@15.1.1</li>
+<li>yargs@17.7.3</li>
+<li>yocto-queue@0.1.0</li>
+<li>zustand@4.5.7</li>
+</ul></details>
+<details><summary>ISC (44개)</summary><ul class="oss-list">
+<li>@isaacs/fs-minipass@4.0.1</li>
+<li>@isaacs/ttlcache@1.4.1</li>
+<li>@istanbuljs/load-nyc-config@1.1.0</li>
+<li>@ungap/structured-clone@1.3.3</li>
+<li>anymatch@3.1.3</li>
+<li>boolbase@1.0.0</li>
+<li>cliui@8.0.1</li>
+<li>electron-to-chromium@1.5.398</li>
+<li>fastq@1.20.1</li>
+<li>fs.realpath@1.0.0</li>
+<li>get-caller-file@2.0.5</li>
+<li>glob-parent@5.1.2</li>
+<li>glob-parent@6.0.2</li>
+<li>glob@7.2.3</li>
+<li>graceful-fs@4.2.11</li>
+<li>hosted-git-info@7.0.2</li>
+<li>inflight@1.0.6</li>
+<li>inherits@2.0.4</li>
+<li>ini@1.3.8</li>
+<li>isexe@2.0.0</li>
+<li>lru-cache@10.4.3</li>
+<li>lru-cache@5.1.1</li>
+<li>minimatch@3.1.5</li>
+<li>minimatch@9.0.9</li>
+<li>npm-package-arg@11.0.3</li>
+<li>once@1.4.0</li>
+<li>picocolors@1.1.1</li>
+<li>proc-log@4.2.0</li>
+<li>rimraf@3.0.2</li>
+<li>semver@6.3.1</li>
+<li>semver@7.6.3</li>
+<li>semver@7.7.2</li>
+<li>semver@7.8.5</li>
+<li>setprototypeof@1.2.0</li>
+<li>signal-exit@3.0.7</li>
+<li>test-exclude@6.0.0</li>
+<li>validate-npm-package-name@5.0.1</li>
+<li>which@2.0.2</li>
+<li>wrappy@1.0.2</li>
+<li>write-file-atomic@4.0.2</li>
+<li>y18n@5.0.8</li>
+<li>yallist@3.1.1</li>
+<li>yaml@2.9.0</li>
+<li>yargs-parser@21.1.1</li>
+</ul></details>
+<details><summary>BSD-3-Clause (18개)</summary><ul class="oss-list">
+<li>@expo/xcpretty@4.4.4</li>
+<li>@react-native/debugger-frontend@0.81.5</li>
+<li>@sinonjs/commons@3.0.1</li>
+<li>@sinonjs/fake-timers@10.3.0</li>
+<li>babel-plugin-istanbul@6.1.1</li>
+<li>fast-uri@3.1.5</li>
+<li>hoist-non-react-statics@3.3.2</li>
+<li>hyphenate-style-name@1.1.0</li>
+<li>ieee754@1.2.1</li>
+<li>istanbul-lib-coverage@3.2.2</li>
+<li>istanbul-lib-instrument@5.2.1</li>
+<li>makeerror@1.0.12</li>
+<li>rtl-detect@1.1.2</li>
+<li>source-map-js@1.2.1</li>
+<li>source-map@0.5.7</li>
+<li>source-map@0.6.1</li>
+<li>sprintf-js@1.0.3</li>
+<li>tmpl@1.0.5</li>
+</ul></details>
+<details><summary>Apache-2.0 (15개)</summary><ul class="oss-list">
+<li>baseline-browser-mapping@2.11.7</li>
+<li>bser@2.1.1</li>
+<li>chrome-launcher@0.15.2</li>
+<li>chromium-edge-launcher@0.2.0</li>
+<li>detect-libc@1.0.3</li>
+<li>detect-libc@2.1.2</li>
+<li>didyoumean@1.2.2</li>
+<li>exponential-backoff@3.1.3</li>
+<li>fb-watchman@2.0.2</li>
+<li>lighthouse-logger@1.4.2</li>
+<li>marky@1.3.0</li>
+<li>ts-interface-checker@0.1.13</li>
+<li>typescript@5.9.3</li>
+<li>walker@1.0.8</li>
+<li>xcode@3.0.1</li>
+</ul></details>
+<details><summary>BSD-2-Clause (15개)</summary><ul class="oss-list">
+<li>css-select@5.2.2</li>
+<li>css-what@6.2.2</li>
+<li>domelementtype@2.3.0</li>
+<li>domhandler@5.0.3</li>
+<li>domutils@3.2.2</li>
+<li>dotenv-expand@11.0.7</li>
+<li>dotenv@16.4.7</li>
+<li>entities@4.5.0</li>
+<li>esprima@4.0.1</li>
+<li>fontfaceobserver@2.3.0</li>
+<li>nth-check@2.1.1</li>
+<li>regjsparser@0.13.2</li>
+<li>terser@5.49.0</li>
+<li>webidl-conversions@3.0.1</li>
+<li>webidl-conversions@5.0.0</li>
+</ul></details>
+<details><summary>BlueOak-1.0.0 (9개)</summary><ul class="oss-list">
+<li>chownr@3.0.0</li>
+<li>glob@13.0.6</li>
+<li>lru-cache@11.5.2</li>
+<li>minimatch@10.2.6</li>
+<li>minipass@7.1.3</li>
+<li>path-scurry@2.0.2</li>
+<li>sax@1.6.1</li>
+<li>tar@7.5.22</li>
+<li>yallist@5.0.0</li>
+</ul></details>
+<details><summary>MPL-2.0 (4개)</summary><ul class="oss-list">
+<li>lightningcss-darwin-arm64@1.27.0</li>
+<li>lightningcss-darwin-arm64@1.33.0</li>
+<li>lightningcss@1.27.0</li>
+<li>lightningcss@1.33.0</li>
+</ul></details>
+<details><summary>MIT AND OFL-1.1 (2개)</summary><ul class="oss-list">
+<li>@expo-google-fonts/noto-sans-kr@0.4.3</li>
+<li>@expo-google-fonts/space-grotesk@0.4.1</li>
+</ul></details>
+<details><summary>Unlicense (2개)</summary><ul class="oss-list">
+<li>big-integer@1.6.52</li>
+<li>stream-buffers@2.2.0</li>
+</ul></details>
+<details><summary>0BSD (2개)</summary><ul class="oss-list">
+<li>jsc-safe-url@0.2.4</li>
+<li>tslib@2.8.1</li>
+</ul></details>
+<details><summary>(MIT OR CC0-1.0) (2개)</summary><ul class="oss-list">
+<li>type-fest@0.21.3</li>
+<li>type-fest@0.7.1</li>
+</ul></details>
+<details><summary>Python-2.0 (1개)</summary><ul class="oss-list">
+<li>argparse@2.0.1</li>
+</ul></details>
+<details><summary>CC-BY-4.0 (1개)</summary><ul class="oss-list">
+<li>caniuse-lite@1.0.30001806</li>
+</ul></details>
+<details><summary>CC0-1.0 (1개)</summary><ul class="oss-list">
+<li>mdn-data@2.0.14</li>
+</ul></details>
+<details><summary>(BSD-3-Clause OR GPL-2.0) (1개)</summary><ul class="oss-list">
+<li>node-forge@1.4.0</li>
+</ul></details>
+<details><summary>Apache 2.0 (1개)</summary><ul class="oss-list">
+<li>qrcode-terminal@0.11.0</li>
+</ul></details>
+<details><summary>(BSD-2-Clause OR MIT OR Apache-2.0) (1개)</summary><ul class="oss-list">
+<li>rc@1.2.8</li>
+</ul></details>
+
+</article>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="brand">
+      <span class="brand-mark">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M 12.802 2.835 A 9.2 9.2 0 1 1 2.940 13.598" style="stroke:var(--on-primary)" stroke-width="2" stroke-linecap="round"/><path d="M 2.800 12.000 A 9.2 9.2 0 0 1 11.198 2.835" style="stroke:var(--gold)" stroke-width="2" stroke-linecap="round"/></svg>
+      </span>
+      <span class="brand-word">mytempo<span class="brand-tm">™</span></span>
+    </div>
+    <div class="footer-links">
+      <a href="/privacy/">개인정보처리방침</a>
+      <a href="/terms/">이용약관</a>
+      <a href="/oss/">오픈소스 라이선스</a>
+      <a href="mailto:contact@mytempo.co.kr">문의</a>
+    </div>
+    <div class="footer-copy">© 2026 mytempostudio. All rights reserved.</div>
+  </div>
+</footer>
+
+<script>
+/* 언어를 직접 고르면 기억한다 — 다음 방문에 자동 전환이 그 선택을 덮어쓰지 않도록. */
+(function(){var s=document.querySelector(".lang-switch");if(!s)return;
+  s.addEventListener("click",function(e){var a=e.target.closest("a");if(!a)return;
+    try{localStorage.setItem("mytempo:lang",a.getAttribute("hreflang"));}catch(err){}});})();
+</script>
+</body>
+</html>
