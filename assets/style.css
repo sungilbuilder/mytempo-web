@@ -13,8 +13,11 @@
   --subtle: #8A9382;
   --green: #3F6136;
   --green-deep: #2E4A24;
-  --gold: #D9B84A;
-  --gold-deep: #C9A431;
+  /* 라이트 골드는 로고 시스템 확정본의 공식 액센트 값을 그대로 쓴다(2026-09-09, T-42).
+     이전 값 #D9B84A는 로고(#C9932B)·앱 UI(#D4AF37)·네온(#EFC94D) 어느 것과도 안 맞는
+     제3의 값이었다 — 다크 모드 쪽(#E9CE6C)은 이미 공식 네온 골드와 일치해 그대로 둔다. */
+  --gold: #C9932B;
+  --gold-deep: #A87A22;
   --on-primary: #F2F5EE;
   --on-accent: #16211A;
 
@@ -377,7 +380,9 @@ h2.section-title { font-size: clamp(26px, 4vw, 40px); font-weight: 800; line-hei
 .difference .statement-accent em { font-style: normal; color: var(--band-accent); }
 
 /* ---------- Trust ---------- */
-.trust-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; margin-bottom: 32px; }
+/* 데스크톱에서도 2×2를 유지한다 — 4열로 펴면 카드 하나하나가 좁아져 프라이버시 4항목이
+   "스펙 나열"처럼 읽힌다. 읽히는 단위를 2개씩 묶어두는 편이 신뢰 섹션의 목적에 맞다. */
+.trust-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; margin-bottom: 32px; }
 .trust-item {
   border: 1px solid var(--band-line); border-radius: var(--radius);
   padding: 24px 22px; background: var(--band-card);
@@ -457,7 +462,7 @@ footer .wrap { display: flex; flex-wrap: wrap; align-items: center; justify-cont
   .phone { width: min(230px, 58vw); }
   .stats-strip .wrap { grid-template-columns: 1fr 1fr; gap: 28px 20px; }
   .steps { grid-template-columns: 1fr; }
-  .trust-grid { grid-template-columns: 1fr 1fr; }
+  /* .trust-grid는 데스크톱부터 이미 2열이라 여기서 다시 선언할 필요가 없다 */
   .grid-4 { grid-template-columns: 1fr; grid-template-areas: "f2" "f1" "f3" "f4"; }
   .card-feature { grid-template-columns: 1fr; gap: 24px; }
   .price-grid { grid-template-columns: 1fr; }
