@@ -10,6 +10,13 @@
   --track: #F0EEE6;
   --ink: #16211A;
   --muted: #5F6C5C;
+  /* ⚠️ subtle은 **장식 전용**이다 — 구분선·비활성 아이콘·화살표. 글자에 쓰지 않는다.
+     앱이 2026-08-06에 같은 규칙을 정했고(디자인가이드-라이트다크-토글 §1-B①) 앱 코드는
+     `text-subtle` 0곳으로 지키는데, 웹만 4곳에서 글자색으로 쓰고 있었다 → 2026-09-29 C-14로 정리.
+     실측: 라이트 bg 위 3.06:1 / 다크 bg 위 3.17:1 · surface 위 2.89:1 — 11~12px이라 AA(4.5) 미달.
+     `--muted`로 바꾸면 5.31 / 6.19이다.
+     ⚠️ pa11y WCAG2AA 8/8 통과는 **반증이 아니다** — 2026-09-29에 직접 돌려봤고,
+     HTML_CodeSniffer가 낸 대비 관련 항목 3건은 전부 warning/notice이며 이 네 곳을 짚지 않는다. */
   --subtle: #8A9382;
   --green: #3F6136;
   --green-deep: #2E4A24;
@@ -21,6 +28,10 @@
      대비 걱정은 없다 — 이 토큰은 stroke·background·gradient로만 쓰고 글자색으로는
      안 쓴다(아래 --band-accent 주석 참고). 다크(#E9CE6C)는 세 표면이 처음부터 일치. */
   --gold: #D9B84A;
+  /* ⚠️ 사용처 0곳. 앱의 `accent.deep`(#C9A431)과 **다른 값이고, 통일하면 안 된다** (2026-09-29 실측).
+     #A87A22는 라이트 bg 위 3.67:1 — 큰 글자(24px+)에만 쓸 수 있는 "글자용 골드"다.
+     #C9A431은 2.28:1로 글자에 못 쓴다. 두 값은 용도가 달라서 갈라져 있는 것이지 이탈이 아니다.
+     (다크는 양쪽 다 #E4C863으로 원래 같다.) 쓰기 시작할 거면 이 차이를 먼저 정할 것. */
   --gold-deep: #A87A22;
   --on-primary: #F2F5EE;
   --on-accent: #16211A;
@@ -171,7 +182,7 @@ h2.section-title { font-size: clamp(26px, 4vw, 40px); font-weight: 800; line-hei
   border: 1px solid var(--line); background: var(--surface); color: var(--ink);
   border-radius: var(--radius-sm); padding: 15px 16px; font-size: 15px; font-family: inherit;
 }
-.signup input::placeholder { color: var(--subtle); }
+.signup input::placeholder { color: var(--muted); }   /* C-14: subtle은 장식 전용 */
 .btn-primary {
   display: inline-flex; align-items: center; justify-content: center; gap: 8px;
   background: var(--green); color: var(--on-primary);
@@ -257,7 +268,7 @@ h2.section-title { font-size: clamp(26px, 4vw, 40px); font-weight: 800; line-hei
 .ring.lg .ring-center { font-size: clamp(38px, 7vw, 56px); }
 .ring-center small {
   font-family: var(--font-kr); font-size: 11px; font-weight: 500;
-  color: var(--subtle); letter-spacing: 0; margin-top: 6px;
+  color: var(--muted); letter-spacing: 0; margin-top: 6px;   /* C-14 */
 }
 
 /* 파형 — SVG 안에 두어야 링과 같은 좌표계를 쓴다.
@@ -357,7 +368,7 @@ h2.section-title { font-size: clamp(26px, 4vw, 40px); font-weight: 800; line-hei
   font-weight: 700; letter-spacing: -0.03em; color: var(--ink); line-height: 1;
   margin: 18px 0 0;
 }
-.display-caption { font-size: 12px; color: var(--subtle); margin: 8px 0 0; }
+.display-caption { font-size: 12px; color: var(--muted); margin: 8px 0 0; }   /* C-14 */
 .tempo-bar-demo {
   margin-top: 14px; height: 16px; border-radius: 999px; background: var(--surface-2);
   display: flex; overflow: hidden; position: relative;
@@ -668,7 +679,7 @@ section.tight.statement-only { padding: 56px 0 8px; }
   display: inline-flex; align-items: center; min-height: 44px;
   font-family: var(--font-display);
   font-size: 12px; font-weight: 700; letter-spacing: 0.03em;
-  padding: 0 13px; text-decoration: none; color: var(--subtle); line-height: 1;
+  padding: 0 13px; text-decoration: none; color: var(--muted); line-height: 1;   /* C-14 */
 }
 .lang-switch a:hover { color: var(--ink); }
 .lang-switch a[aria-current] { background: var(--green); color: var(--on-primary); }
