@@ -218,7 +218,7 @@ h2.section-title { font-size: clamp(26px, 4vw, 40px); font-weight: 800; line-hei
 .phone {
   position: relative;
   width: min(310px, 82vw);
-  aspect-ratio: 620 / 1302;   /* 실기기 스크린샷 + 상태바 밴드 비율 */
+  aspect-ratio: 620 / 1277;   /* 실기기 스크린샷(vc15) — 상태바·제스처바를 잘라낸 비율 */
   background: var(--bg);
   border: 10px solid var(--bezel);
   border-radius: 44px;
