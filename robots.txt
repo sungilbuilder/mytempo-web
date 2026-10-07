@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
+Disallow: /sns/
 
 Sitemap: https://mytempo.co.kr/sitemap.xml
