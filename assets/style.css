@@ -337,7 +337,7 @@ h2.section-title { font-size: clamp(26px, 4vw, 40px); font-weight: 800; line-hei
   width: 13px; height: 13px; border-radius: 50%; background: var(--ink);
   border: 3px solid var(--surface); box-shadow: 0 0 0 1.5px var(--ink); flex-shrink: 0; margin: 0 -4px; z-index: 1;
 }
-.marks-legend { display: flex; justify-content: space-between; font-size: 10px; color: var(--muted); margin-top: 8px; }
+.marks-legend { display: flex; justify-content: space-between; font-size: 12px; color: var(--muted); margin-top: 8px; }
 
 /* 사운드 웨이브 데모 */
 .wave { display: flex; align-items: flex-end; gap: 4px; height: 44px; width: 100%; }
@@ -358,7 +358,6 @@ h2.section-title { font-size: clamp(26px, 4vw, 40px); font-weight: 800; line-hei
 .grid-4 > .card:nth-child(3) { grid-area: f3; }
 .card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 28px 24px; }
 .card-feature { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 36px; align-items: center; padding: 36px; }
-.card .num { font-family: var(--font-display); font-size: 13px; font-weight: 700; color: var(--green); margin-bottom: 14px; }
 .card h3 { font-size: 17px; font-weight: 700; margin-bottom: 10px; }
 .card p { font-size: 14px; color: var(--muted); margin: 0; }
 .card-feature h3 { font-size: 22px; }
@@ -371,15 +370,10 @@ h2.section-title { font-size: clamp(26px, 4vw, 40px); font-weight: 800; line-hei
 .display-caption { font-size: 12px; color: var(--muted); margin: 8px 0 0; }   /* C-14 */
 .tempo-bar-demo {
   margin-top: 14px; height: 16px; border-radius: 999px; background: var(--surface-2);
-  display: flex; overflow: hidden; position: relative;
+  display: flex; overflow: hidden;
 }
 .tempo-bar-demo .bs { flex-basis: 75%; background: var(--green); }
 .tempo-bar-demo .ds { flex: 1; background: var(--gold); }
-.tempo-bar-demo .dot {
-  position: absolute; top: -3px; width: 22px; height: 22px; border-radius: 50%;
-  background: var(--ink); animation: dotMove 1.4s linear infinite;
-}
-@keyframes dotMove { 0% { left: 0%; transform: translateX(0); } 100% { left: 100%; transform: translateX(-100%); } }
 
 /* ---------- Positioning statement (full-bleed band) ---------- */
 .difference { max-width: 820px; }
@@ -393,19 +387,13 @@ h2.section-title { font-size: clamp(26px, 4vw, 40px); font-weight: 800; line-hei
 /* ---------- Trust ---------- */
 /* 데스크톱에서도 2×2를 유지한다 — 4열로 펴면 카드 하나하나가 좁아져 프라이버시 4항목이
    "스펙 나열"처럼 읽힌다. 읽히는 단위를 2개씩 묶어두는 편이 신뢰 섹션의 목적에 맞다. */
-.trust-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; margin-bottom: 32px; }
-.trust-item {
-  border: 1px solid var(--band-line); border-radius: var(--radius);
-  padding: 24px 22px; background: var(--band-card);
-}
-.trust-item .ic {
-  width: 34px; height: 34px; border-radius: 10px;
-  background: color-mix(in srgb, var(--band-accent) 15%, transparent);
-  display: flex; align-items: center; justify-content: center; margin-bottom: 16px;
-}
-.trust-item .ic svg { width: 17px; height: 17px; stroke: var(--band-accent); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
-.trust-item h3 { font-size: 15px; font-weight: 700; color: var(--band-ink); margin-bottom: 6px; }
-.trust-item p { font-size: 13px; color: var(--band-muted); margin: 0; }
+/* 2026-10-08: 아이콘 타일 + 굵은 제목 + 작은 회색 설명 카드 4장이었다 — 창업자 규칙
+   "회색 둘째 줄은 현재 값일 때만"(avoid-ai-design)대로 같은 크기·같은 색 한 문장으로 합치고
+   앞부분만 굵게 한다. 카드 상자 대신 1px 구분선. */
+.trust-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0 40px; margin-bottom: 32px; }
+.trust-item { display: flex; gap: 12px; padding: 18px 0; border-top: 1px solid var(--band-line); }
+.trust-item .ic svg { display: block; width: 18px; height: 18px; margin-top: 3px; stroke: var(--band-accent); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.trust-item p { font-size: 15px; color: var(--band-ink); margin: 0; }
 /* 2026-09-22(T-42): 실측 20px → 44px */
 .link-arrow { display: inline-flex; align-items: center; min-height: 44px; color: var(--green); text-decoration: none; font-size: 14px; font-weight: 700; }
 .band .link-arrow { color: var(--band-accent); }
@@ -500,7 +488,7 @@ footer .wrap { display: flex; flex-wrap: wrap; align-items: center; justify-cont
   .brand-word { display: none; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .ring-dot-wrap, .tempo-bar-demo .dot,
+  .ring-dot-wrap,
   .ring-fx-impact, .ring-fx-top { animation: none; }
   .ring-fx { opacity: 0; }
   html { scroll-behavior: auto; }
@@ -608,16 +596,8 @@ section.tight.statement-only { padding: 56px 0 8px; }
     linear-gradient(to bottom left,  transparent 44%, var(--subtle) 44%, var(--subtle) 56%, transparent 56%);
 }
 
-/* 두 카드에 동일한 상단 액센트 — 한쪽만 강조하는 "추천 플랜" 업셀은 여전히 하지 않는다 */
-.price-card { position: relative; overflow: hidden; }
-.price-card::before {
-  content: ""; position: absolute; top: 0; left: 0; right: 0; height: 3px;
-  background: linear-gradient(90deg, var(--green), var(--gold));
-}
-
 .price-assure {
-  margin: 24px 0 0; font-size: 12px; font-weight: 700;
-  letter-spacing: 0.08em; color: var(--muted); text-transform: uppercase;
+  margin: 24px 0 0; font-size: 12px; font-weight: 700; color: var(--muted);
 }
 
 /* ---------- 포지셔닝 밴드 안의 템포 링 ----------
