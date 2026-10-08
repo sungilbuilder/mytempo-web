@@ -56,9 +56,11 @@
   --space-3: 24px;
   --space-4: 32px;
   --space-6: 48px;
-  --radius-sm: 12px;
-  --radius: 18px;
-  --radius-lg: 24px;
+  /* 2026-10-09 (디자인진단 D1 · AI티-금지목록 17): 12·18·24 → 4·8·8. 앱 tailwind.config.js와 같은 값.
+     폰 목업 테두리(44·34px)는 기기 모양을 그린 것이라 그대로 둔다. */
+  --radius-sm: 8px;
+  --radius: 8px;
+  --radius-lg: 8px;
 
   --font-kr: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
   --font-display: 'Space Grotesk', var(--font-kr);
@@ -120,8 +122,7 @@ img { max-width: 100%; }
 /* ---------- Nav ---------- */
 .nav {
   position: sticky; top: 0; z-index: 20;
-  background: color-mix(in srgb, var(--bg) 88%, transparent);
-  backdrop-filter: blur(10px);
+  background: var(--bg);   /* 2026-10-09 (F9): 반투명 흐림(AI티-금지목록 13) → 불투명 면 + 1px 선 */
   border-bottom: 1px solid var(--line);
 }
 .nav .wrap { height: 68px; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
@@ -149,25 +150,17 @@ section.tight { padding: 72px 0; }
 .eyebrow { font-size: 13px; font-weight: 700; color: var(--green); letter-spacing: 0.02em; margin: 0 0 16px; }
 h1, h2, h3 { margin: 0; letter-spacing: -0.025em; }
 h2.section-title { font-size: clamp(26px, 4vw, 40px); font-weight: 800; line-height: 1.25; margin-bottom: 14px; }
-.section-sub { color: var(--muted); font-size: 17px; max-width: 580px; margin: 0 0 56px; }
+.section-sub { color: var(--ink); font-size: 17px;  /* 2026-10-09 (D3): 앱 T-110과 같이, 남긴 문단은 본문 색 */ max-width: 580px; margin: 0 0 56px; }
 
 /* 대비 밴드 — 페이지 전체가 한 톤으로 흐르지 않게 리듬을 만든다 */
 .band { background: var(--band); color: var(--band-ink); }
 .band .section-title { color: var(--band-ink); }
-.band .section-sub { color: var(--band-muted); }
+.band .section-sub { color: var(--band-ink); }
 .band .eyebrow { color: var(--band-accent); }
 
 /* ---------- Hero ---------- */
 .hero { padding: 80px 0 96px; border-bottom: 1px solid var(--line); overflow: hidden; }
 .hero .wrap { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 56px; align-items: center; }
-.hero-badge {
-  display: inline-flex; align-items: center; gap: 8px;
-  border: 1px solid var(--line); background: var(--surface);
-  border-radius: 999px; padding: 6px 14px 6px 8px;
-  font-size: 13px; font-weight: 500; color: var(--muted); margin-bottom: 22px;
-}
-.hero-badge b { color: var(--green); font-weight: 700; }
-.hero-badge .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--green); }
 .hero h1 {
   font-size: clamp(34px, 5.4vw, 60px);
   font-weight: 800; line-height: 1.18; color: var(--ink); margin-bottom: 22px;
@@ -210,15 +203,10 @@ h2.section-title { font-size: clamp(26px, 4vw, 40px); font-weight: 800; line-hei
 
 /* ---------- Phone mock (실제 앱 화면을 랜딩에 노출) ---------- */
 .phone-stage { position: relative; display: flex; align-items: center; justify-content: center; }
-.phone-glow {
-  position: absolute; width: 78%; aspect-ratio: 1; border-radius: 50%;
-  background: radial-gradient(circle, color-mix(in srgb, var(--green) 26%, transparent), transparent 68%);
-  filter: blur(18px);
-}
 .phone {
   position: relative;
   width: min(310px, 82vw);
-  aspect-ratio: 620 / 1277;   /* 실기기 스크린샷(vc15) — 상태바·제스처바를 잘라낸 비율 */
+  aspect-ratio: 620 / 1277;   /* 에뮬레이터 캡처(2026-10-09, vc19 번들). 상태바·제스처바를 잘라낸 비율 */
   background: var(--bg);
   border: 10px solid var(--bezel);
   border-radius: 44px;
@@ -248,7 +236,7 @@ h2.section-title { font-size: clamp(26px, 4vw, 40px); font-weight: 800; line-hei
 
    지금 동작: 점이 지점을 밟는 그 프레임에 최대 밝기로 켜지고, 거기서부터
    바깥으로 퍼지며 사라진다(약 0.34초). */
-.ring { width: min(210px, 62vw); aspect-ratio: 1; position: relative; }
+.ring { width: min(210px, 62vw); aspect-ratio: 1; position: relative; overflow: hidden; }  /* 2026-10-09 (F6): 회전하는 .ring-dot-wrap 모서리가 360px 화면에서 18px 넘쳤다 */
 .ring.lg { width: min(300px, 78vw); }
 .ring svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
 .ring-track { stroke: var(--track); }
@@ -368,7 +356,8 @@ h2.section-title { font-size: clamp(26px, 4vw, 40px); font-weight: 800; line-hei
 /* 2026-09-22(T-42): 실측 20px → 44px */
 .link-arrow { display: inline-flex; align-items: center; min-height: 44px; color: var(--green); text-decoration: none; font-size: 14px; font-weight: 700; }
 .band .link-arrow { color: var(--band-accent); }
-.link-arrow:hover { opacity: .8; }
+.link-arrow:hover { color: var(--green-deep); }  /* 2026-10-09 (F9): opacity 흐림(27) → 진하게 */
+.band .link-arrow:hover { color: var(--band-ink); }
 
 /* ---------- Pricing ---------- */
 .price-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
@@ -380,7 +369,7 @@ h2.section-title { font-size: clamp(26px, 4vw, 40px); font-weight: 800; line-hei
 .price-card .plan { font-size: 13px; font-weight: 700; color: var(--muted); margin: 0; }
 .price-card .plan-tag {
   font-size: 11px; font-weight: 700; color: var(--green);
-  background: var(--surface-2); border-radius: 999px; padding: 2px 9px;
+  background: var(--surface-2); border-radius: 4px; padding: 2px 9px;
 }
 .price-card .amount { font-family: var(--font-display); font-size: 38px; font-weight: 700; letter-spacing: -0.03em; margin: 0 0 4px; }
 .price-card .desc { font-size: 13px; color: var(--muted); margin: 0 0 22px; }
@@ -618,7 +607,7 @@ section.tight.statement-only { padding: 56px 0 8px; }
    반대쪽으로 갈 길이 항상 보여야 한다. */
 .lang-switch {
   display: inline-flex; align-items: center;
-  border: 1px solid var(--line); border-radius: 999px;
+  border: 1px solid var(--line); border-radius: var(--radius-sm);
   overflow: hidden; flex-shrink: 0; margin-left: 4px;
 }
 /* 2026-09-22(T-42): 실측 26px였다. 언어 전환은 잘못 누르면 페이지가 통째로 바뀌는 동작인데
