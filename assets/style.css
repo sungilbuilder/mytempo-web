@@ -26,12 +26,12 @@
      "진해진 골드가 어색하다, 이전 골드가 낫다"고 판정했다 — 앱과 웹을 함께 되돌린다.
      즉 지금은 **앱·웹이 같은 값**이고, 맞춘 기준이 로고 문서가 아니라 실물이다.
      대비 걱정은 없다 — 이 토큰은 stroke·background·gradient로만 쓰고 글자색으로는
-     안 쓴다(아래 --band-accent 주석 참고). 다크(#E9CE6C)는 세 표면이 처음부터 일치. */
+     안 쓴다(아래 --band-accent 주석 참고). 다크 골드는 2026-10-18 다듬기로 #E9CE6C → #E2C878, 앱·로고와 같이 바꿨다. */
   --gold: #D9B84A;
   /* ⚠️ 사용처 0곳. 앱의 `accent.deep`(#C9A431)과 **다른 값이고, 통일하면 안 된다** (2026-09-29 실측).
      #A87A22는 라이트 bg 위 3.67:1 — 큰 글자(24px+)에만 쓸 수 있는 "글자용 골드"다.
      #C9A431은 2.28:1로 글자에 못 쓴다. 두 값은 용도가 달라서 갈라져 있는 것이지 이탈이 아니다.
-     (다크는 양쪽 다 #E4C863으로 원래 같다.) 쓰기 시작할 거면 이 차이를 먼저 정할 것. */
+     (다크는 양쪽 다 #D6BB68로 같다. 2026-10-18 전에는 #E4C863) 쓰기 시작할 거면 이 차이를 먼저 정할 것. */
   --gold-deep: #A87A22;
   --on-primary: #F2F5EE;
   --on-accent: #16211A;
@@ -66,30 +66,33 @@
   --font-display: 'Space Grotesk', var(--font-kr);
 }
 
+/* 다크 (2026-10-18 다듬기, 앱 `0e88e69`와 같은 값). 형광 초록 #7ED45C와 골드 #E9CE6C의 밝기 대비가
+   1.18:1이라 링 두 구간이 색상으로만 갈렸고, 검정 바탕 + 형광 강조가 AI티-금지목록 36번에 걸렸다.
+   초록 #5E9A55 · 골드 #E2C878로 2.05:1. 바탕·표면·글자는 같은 간격으로 한 단계 올렸다. 라이트는 그대로. */
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg: #0D110D;
-    --surface: #161C15;
-    --surface-2: #222A20;
-    --line: #2C3629;
-    --track: #232C21;
-    --ink: #F2F5EE;
-    --muted: #8A9782;
-    --subtle: #5C6659;
-    --green: #7ED45C;
+    --bg: #121510;
+    --surface: #1A1E17;
+    --surface-2: #242A21;
+    --line: #30372C;
+    --track: #262C23;
+    --ink: #EEF0E8;
+    --muted: #9AA290;
+    --subtle: #5F6858;
+    --green: #5E9A55;
     --green-deep: #4E8C39;
-    --gold: #E9CE6C;
-    --gold-deep: #E4C863;
+    --gold: #E2C878;
+    --gold-deep: #D6BB68;
     --on-primary: #0A0F09;
     --on-accent: #0A0F09;
     /* 다크에서 밴드는 "더 어둡게"가 아니라 "한 단계 밝은 표면"으로 뒤집는다 */
-    --band: #1B231A;
-    --band-ink: #F2F5EE;
-    --band-muted: #8A9782;
-    --band-line: #2C3629;
-    --band-accent: #E9CE6C;
-    --band-card: #222A20;
-    --band-btn: #E9CE6C;
+    --band: #1F251C;
+    --band-ink: #EEF0E8;
+    --band-muted: #9AA290;
+    --band-line: #30372C;
+    --band-accent: #E2C878;
+    --band-card: #242A21;
+    --band-btn: #E2C878;
     --band-btn-ink: #0A0F09;
     --bezel: #050805;
   }
@@ -206,7 +209,7 @@ h2.section-title { font-size: clamp(26px, 4vw, 40px); font-weight: 800; line-hei
 .phone {
   position: relative;
   width: min(310px, 82vw);
-  aspect-ratio: 620 / 1277;   /* 에뮬레이터 캡처(2026-10-09, vc19 번들). 상태바·제스처바를 잘라낸 비율 */
+  aspect-ratio: 620 / 1277;   /* 에뮬레이터 캡처(라이트 2026-10-09 vc19 번들, 다크 2026-10-18 다크 다듬기 번들). Pixel 8에서 상태바 132px · 제스처바 44px를 잘라낸 비율 */
   background: var(--bg);
   border: 10px solid var(--bezel);
   border-radius: 44px;
