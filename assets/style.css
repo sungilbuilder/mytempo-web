@@ -645,6 +645,8 @@ section.tight.statement-only { padding: 56px 0 8px; }
 /* 받은 템포 페이지 /t/ (2026-10-16, 앱 T-113 5단계) */
 .tempo-share { padding: 56px 24px 96px; max-width: 560px; }
 .tempo-share h1 { font-size: clamp(24px, 3.6vw, 32px); font-weight: 800; }
-.tempo-share-ratio { font-size: 56px; font-weight: 800; margin: 24px 0 4px; font-variant-numeric: tabular-nums; }
-.tempo-share-detail { font-size: 16px; color: var(--ink); margin: 0 0 28px; }
+.tempo-share .ring { margin: 28px 0 24px; }
+.tempo-share .ring-center { font-variant-numeric: tabular-nums; }
+.tempo-share .approx { font-family: var(--font-kr); font-size: 0.5em; font-weight: 700; margin-right: 0.12em; }
+.tempo-share-detail { font-size: 16px; color: var(--ink); margin: 0 0 28px; line-height: 1.6; max-width: 30em; }
 .tempo-share-note { font-size: 15px; color: var(--ink); margin: 28px 0 0; }

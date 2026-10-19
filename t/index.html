@@ -16,7 +16,8 @@
 <!--
   템포 공유 링크가 여는 페이지 (2026-10-16, 앱 T-113 5단계).
   값은 주소 # 뒤에만 있다(b 백스윙 초 · d 다운스윙 초 · c 클럽 · f fps). # 뒤는 브라우저가 서버로 보내지 않는다.
-  receive.js가 값을 읽어 화면에 쓰고 「마이템포에서 열기」를 앱 링크(mytempo://receive?…)로 만든다.
+  receive.js가 값을 읽어 링(랜딩 .ring과 같은 기하, 초록 백스윙 · 금색 다운스윙)에 그리고 「마이템포에서 열기」를
+  앱 링크(mytempo://receive?…)로 만든다. 클럽 · 초 수는 쓰지 않는다(창업자 10-19: 받는 사람에겐 비율과 쓰임만).
   검사 규칙은 앱 features/tempo/shareLink.ts parseSharedTempo와 같다.
 -->
 <nav class="nav">
@@ -33,8 +34,15 @@
 <main class="wrap tempo-share">
   <h1 id="title">받은 템포</h1>
   <div id="tempo" hidden>
-    <p class="tempo-share-ratio" id="ratio"></p>
-    <p class="tempo-share-detail" id="detail"></p>
+    <div class="ring" id="ring" role="img">
+      <svg aria-hidden="true" viewBox="0 0 100 100">
+        <circle class="ring-track" cx="50" cy="50" r="42" fill="none" stroke-width="9"/>
+        <circle class="ring-gold" cx="50" cy="50" r="42" fill="none" stroke-width="9" stroke-linecap="round" transform="rotate(-90 50 50)" stroke-dasharray="264"/>
+        <circle class="ring-green" id="arc" cx="50" cy="50" r="42" fill="none" stroke-width="9" stroke-linecap="round" transform="rotate(-90 50 50)" stroke-dasharray="198 66"/>
+      </svg>
+      <div class="ring-center"><span><span class="approx" id="approx"></span><span id="ratio"></span></span></div>
+    </div>
+    <p class="tempo-share-detail" id="what"></p>
     <a class="btn-primary" id="open" href="#">마이템포에서 열기</a>
     <p class="tempo-share-note" id="noapp">앱이 없으면 먼저 받아 주세요. 받은 뒤 이 링크를 다시 열면 돼요.</p>
     <div class="store-row">
