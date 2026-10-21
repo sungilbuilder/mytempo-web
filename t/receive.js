@@ -59,7 +59,9 @@
   $('open').textContent = T.open;
   $('noapp').textContent = T.noapp;
 
-  var q = 'b=' + b.toFixed(2) + '&d=' + d.toFixed(2) + (club ? '&c=' + club : '') + (f > 0 && f <= 1000 ? '&f=' + Math.round(f) : '');
+  // 클럽 번호(n, 2026-10-21: 아이언 4~9 · 어프로치 P · 50~60)는 앱이 검사하니 모양만 보고 그대로 넘긴다
+  var no = club && /^(P|[0-9]{1,2})$/.test(p.n || '') ? '&n=' + p.n : '';
+  var q = 'b=' + b.toFixed(2) + '&d=' + d.toFixed(2) + (club ? '&c=' + club : '') + no + (f > 0 && f <= 1000 ? '&f=' + Math.round(f) : '');
   var play = $('play').href;
   // 안드로이드는 intent 주소로: 앱이 없으면 브라우저가 Play로 넘어간다. 카카오톡 안 브라우저도 이 형식을 연다
   $('open').href = /android/i.test(navigator.userAgent)
