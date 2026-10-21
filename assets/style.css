@@ -194,6 +194,7 @@ h2.section-title { font-size: clamp(26px, 4vw, 40px); font-weight: 800; line-hei
   padding: 14px 22px; border-radius: var(--radius-sm); text-decoration: none;
 }
 .btn-ghost:hover { border-color: var(--green); color: var(--green); }
+.btn-ghost svg { width: 18px; height: 18px; flex-shrink: 0; }
 .cta-note { font-size: 13px; color: var(--muted); margin: 12px 0 0; }
 .store-row { display: flex; align-items: center; gap: 12px; margin-top: 26px; flex-wrap: wrap; }
 .store-badge {
