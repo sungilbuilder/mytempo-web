@@ -1,8 +1,16 @@
 /* 받은 템포 페이지 (2026-10-16, 앱 T-113 5단계). 설명은 t/index.html 머리 주석. */
 (function () {
+  var p = {};
+  location.hash.replace(/^#/, '').split('&').forEach(function (kv) {
+    var i = kv.indexOf('=');
+    if (i > 0) p[kv.slice(0, i)] = decodeURIComponent(kv.slice(i + 1));
+  });
+  // 언어: 보낸 앱의 언어(l, 앱 2026-10-22부터)가 먼저. 없으면 받는 브라우저 언어(창업자 10-22: 영어 앱에서 보낸 링크가 한국 폰 카톡에서 한글로 열렸다)
   var en = true;
   var langs = navigator.languages && navigator.languages.length ? navigator.languages : [navigator.language || ''];
   for (var i = 0; i < langs.length; i++) if (/^ko/i.test(langs[i])) en = false;
+  if (p.l === 'en') en = true;
+  else if (p.l === 'ko') en = false;
 
   // 클럽은 화면에 쓰지 않고 앱 링크로만 넘긴다(앱이 「받은 템포 · 아이언」으로 이름 짓는다)
   var CLUBS = { driver: 1, iron: 1, approach: 1, putting: 1 };
@@ -32,11 +40,6 @@
   function $(id) { return document.getElementById(id); }
   $('title').textContent = T.title;
 
-  var p = {};
-  location.hash.replace(/^#/, '').split('&').forEach(function (kv) {
-    var i = kv.indexOf('=');
-    if (i > 0) p[kv.slice(0, i)] = decodeURIComponent(kv.slice(i + 1));
-  });
   var b = Number(p.b), d = Number(p.d), f = Number(p.f);
   var ok = isFinite(b) && isFinite(d) && b >= 0.05 && d >= 0.05 && b + d >= 0.4 && b + d <= 3;
   if (!ok) {
