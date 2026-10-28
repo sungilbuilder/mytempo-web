@@ -194,7 +194,7 @@ h2.section-title { font-size: clamp(26px, 4vw, 40px); font-weight: 800; line-hei
   padding: 14px 22px; border-radius: var(--radius-sm); text-decoration: none;
 }
 .btn-ghost:hover { border-color: var(--green); color: var(--green); }
-.btn-ghost svg { width: 18px; height: 18px; flex-shrink: 0; }
+.btn-primary svg, .btn-ghost svg { width: 18px; height: 18px; flex-shrink: 0; }
 .cta-note { font-size: 13px; color: var(--muted); margin: 12px 0 0; }
 .store-row { display: flex; align-items: center; gap: 12px; margin-top: 26px; flex-wrap: wrap; }
 .store-badge {
@@ -408,6 +408,7 @@ h2.section-title { font-size: clamp(26px, 4vw, 40px); font-weight: 800; line-hei
 .final-cta .wrap { max-width: 640px; }
 .final-cta .signup { margin: 0 auto; }
 .final-cta .cta-note { text-align: center; }
+.final-cta .store-row { justify-content: center; margin-top: 0; }
 
 /* ---------- Footer ---------- */
 footer { border-top: 1px solid var(--line); padding: 48px 0 40px; }
@@ -476,6 +477,8 @@ body { word-break: keep-all; overflow-wrap: break-word; }
 }
 .band .signup input::placeholder { color: var(--band-muted); }
 .band .cta-note { color: var(--band-muted); }
+.band .btn-ghost { color: var(--band-ink); border-color: var(--band-line); }
+.band .btn-ghost:hover { color: var(--band-btn); border-color: var(--band-btn); }
 
 /* 문제 제기 섹션은 한 문장짜리라 상하 여백을 더 조인다 */
 section.tight.statement-only { padding: 56px 0 8px; }
