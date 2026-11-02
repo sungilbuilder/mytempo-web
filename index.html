@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-fwsTcmmGGdUWKKTtUajY3DPffcaQ/tGjzVBNvBlcOe4=' 'sha256-WoTQt6VgqgHDpeokyEeTE0EQaXTcP1xUoceAsmAD/gI=' 'sha256-WKtGpikDoucQJlkSrUSk9+GP2khIKWFWPQ9ZaY7mBfA='; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://qmpvnjoefkskmykwudxp.supabase.co; form-action 'self'; base-uri 'none'; object-src 'none';">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-fwsTcmmGGdUWKKTtUajY3DPffcaQ/tGjzVBNvBlcOe4=' 'sha256-XT4k7k6Y45PlAjlRrdh1Vg+N2UuT7FJkno2BRoF4QhY=' 'sha256-WKtGpikDoucQJlkSrUSk9+GP2khIKWFWPQ9ZaY7mBfA='; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://qmpvnjoefkskmykwudxp.supabase.co; form-action 'self'; base-uri 'none'; object-src 'none';">
 <script>
 /* 브라우저 언어에 한국어가 없으면 영어판으로 한 번 보낸다.
 
@@ -79,7 +79,7 @@
 <section class="hero">
   <div class="wrap">
     <div>
-      <h1>프로의 템포가 아니라,<br><em>내 최고의 스윙</em>의 템포.</h1>
+      <h1>프로의 템포가 아니라,<br>내 최고의 스윙의 템포.</h1>
       <p class="lead">백스윙 시작·탑·임팩트 세 지점만 찍으면, 인생 최고의 스윙 한 번이 나만의 숫자로 남아요.</p>
 
       <div class="store-row store-cta">
@@ -107,7 +107,7 @@
 <!-- ============ TRUST STRIP ============ -->
 <!-- 수치 근거 (2026-08-19 볼트 대조 확인, 2026-08-21 카피 리디자인)
      · 마킹 3지점 · 기준 리듬 3종(3:1/2.5:1/3.5:1) — 01_전략/프로젝트-개요 §MVP 핵심 기능
-     · 서버 전송 0건 — 같은 문서 §핵심 가치 "오프라인·온디바이스, 서버 없이"
+     · 서버로 올리는 스윙 영상 0개(2026-11-02 정정). 앱은 연습 시간 · 스윙 수 · 비율을 PostHog로 보내므로 「데이터 0건」은 틀린 말이었다
      · ₩0 — 04_수익화/수익화-정책 (무료 범위: 연습·마킹·저장 전부 무제한)
      ⚠️ "투어 프로 평균 3:1" 류의 외부 통계는 볼트에 출처가 없어 쓰지 않는다(브랜드 가이드 "과장 금지").
      캡션은 한 줄 문장이 아니라 짧은 라벨로 — 히어로 바로 아래서 숫자가 브랜드 톤을 누르지 않게, "기능 스펙표"가 아니라 신뢰 배지로 읽히게 한다. -->
@@ -115,7 +115,7 @@
   <div class="wrap">
     <div class="stat"><p class="n">3<span>지점</span></p><p class="t">스윙 등록에 필요한 전부</p></div>
     <div class="stat"><p class="n">3<span>종</span></p><p class="t">이름 붙은 기준 리듬</p></div>
-    <div class="stat"><p class="n">0<span>건</span></p><p class="t">서버로 보내는 데이터</p></div>
+    <div class="stat"><p class="n">0<span>개</span></p><p class="t">서버로 올리는 스윙 영상</p></div>
     <div class="stat"><p class="n">₩0</p><p class="t">영구 무료인 핵심 기능</p></div>
   </div>
 </div>
@@ -123,21 +123,20 @@
 <!-- ============ PROBLEM ============ -->
 <section class="tight statement-only">
   <div class="wrap">
-    <h2 class="section-title">스윙이 흔들리는 가장 큰 원인은<br>템포 변동이에요.</h2>
+    <h2 class="section-title">스윙이 흔들리는 큰 원인은<br>템포 변동이에요.</h2>
   </div>
 </section>
 
 <!-- ============ HOW IT WORKS ============ -->
 <section id="how" class="tight">
   <div class="wrap">
-    <h2 class="section-title">두 단계면 끝나요</h2>
-    <p class="section-sub">앱을 열고 3분이면 첫 연습이 시작돼요.</p>
+    <h2 class="section-title" style="margin-bottom:56px">두 단계면 끝나요</h2>
     <div class="steps steps-linked">
 
       <div class="step">
         <div class="idx">1</div>
         <h3>내 스윙 등록</h3>
-        <p>백스윙 시작 · 탑 · 임팩트, 세 지점만 마킹하면 나만의 템포 비율이 자동으로 계산돼요.</p>
+        <p>백스윙 시작, 탑, 임팩트 세 지점만 마킹하면 나만의 템포 비율이 자동으로 계산돼요.</p>
         <div class="step-visual">
           <div style="width:100%">
             <div class="marks">
@@ -153,17 +152,12 @@
         <h3>소리로 반복</h3>
         <p>계산된 비율 그대로 반복되는 소리를 따라, 몸이 리듬을 기억할 때까지 연습해요.</p>
         <div class="step-visual">
-          <div class="wave">
-            <i class="on" style="height:100%"></i><i style="height:34%"></i><i style="height:22%"></i>
-            <i style="height:30%"></i><i style="height:44%"></i><i class="on" style="height:82%"></i>
-            <i style="height:30%"></i><i class="hit" style="height:100%"></i><i style="height:26%"></i>
-            <i style="height:18%"></i><i style="height:30%"></i><i class="on" style="height:70%"></i>
-          </div>
+          <div class="marks" aria-hidden="true"><span class="pt"></span><span class="seg bs"></span><span class="pt"></span><span class="seg ds"></span><span class="pt"></span><span class="seg bs"></span><span class="pt"></span><span class="seg ds"></span><span class="pt"></span></div>
         </div>
       </div>
 
     </div>
-    <p class="section-sub" style="margin-top:24px">등록 전에는 이름 붙은 기준 리듬(3:1 · 2.5:1 · 3.5:1) 중에서 골라 바로 연습할 수 있어요.</p>
+    <p class="section-sub" style="margin-top:24px">등록 전에는 이름 붙은 기준 리듬(3:1, 2.5:1, 3.5:1) 중에서 골라 바로 연습할 수 있어요.</p>
   </div>
 </section>
 
@@ -172,7 +166,7 @@
   <div class="wrap difference-row">
     <div class="difference">
       <p class="statement">다른 앱들은 프로의 템포를 따라하게 하거나, AI가 대신 분석해줘요.</p>
-      <p class="statement-accent">mytempo는 <em>당신의 스윙 자체</em>를 기준으로 삼아요.</p>
+      <p class="statement-accent">mytempo는 당신의 스윙 자체를 기준으로 삼아요.</p>
     </div>
 
     <!-- 시그니처 컴포넌트 — 앱 components/TempoRing.tsx 와 같은 기하·같은 파형 타이밍 -->
@@ -202,64 +196,58 @@
 <!-- ============ TRUST ============ -->
 <section id="trust" class="band" style="padding-top:0">
   <div class="wrap">
-    <h2 class="section-title">스윙 데이터는 기기 밖으로 나가지 않아요</h2>
+    <h2 class="section-title">스윙 영상은 기기 밖으로 나가지 않아요</h2>
     <div class="trust-grid">
       <div class="trust-item">
-        <span class="ic"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M5 12.5V7l7-3 7 3v5.5c0 4.5-3 7.5-7 8.5-4-1-7-4-7-8.5Z"/></svg></span>
         <p><b>완전 오프라인.</b> 비행기 모드에서도 모든 기능이 그대로 동작해요.</p>
       </div>
       <div class="trust-item">
-        <span class="ic"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M4 6h16v12H4z"/><path d="m4 8 8 5 8-5"/></svg></span>
-        <p><b>계정 없음.</b> 가입도 로그인도 없어요. 이메일조차 받지 않아요.</p>
+        <p><b>계정 없음.</b> 가입도 로그인도 없어요. 앱은 이메일을 받지 않아요.</p>
       </div>
       <div class="trust-item">
-        <span class="ic"><svg aria-hidden="true" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="m6.5 6.5 11 11"/></svg></span>
         <p><b>광고 없음.</b> 배너도 전면 광고도 넣지 않아요.</p>
       </div>
       <div class="trust-item">
-        <span class="ic"><svg aria-hidden="true" viewBox="0 0 24 24"><rect x="5" y="10" width="14" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg></span>
         <p><b>기기 안에서만 처리.</b> 촬영한 영상은 업로드되지 않고 기기 내부에서만 분석돼요.</p>
       </div>
     </div>
-    <p class="section-sub" style="margin-top:16px">서비스 개선을 위해 PostHog로 익명 사용 통계(기기 식별자, 화면 조회 등)를 수집해요. 스윙 영상과 연습 기록은 여기 포함되지 않아요.</p>
-    <a class="link-arrow" href="/privacy/">개인정보처리방침 보기 →</a>
+    <p class="section-sub" style="margin-top:16px">서비스 개선을 위해 PostHog로 익명 사용 통계(기기 식별자, 화면 조회, 연습 시간, 스윙 수, 템포 비율 등)를 수집해요. 스윙 영상은 포함되지 않아요.</p>
+    <a class="link-arrow" href="/privacy/">개인정보처리방침 보기</a>
   </div>
 </section>
 
 <!-- ============ PRICING ============ -->
 <section id="pricing">
   <div class="wrap">
-    <h2 class="section-title">가격은 단순해요</h2>
-    <p class="section-sub">드라이버·아이언 연습은 전부 무료예요.</p>
+    <h2 class="section-title" style="margin-bottom:56px">드라이버·아이언은 무료, 나머지는 ₩12,900 한 번</h2>
     <div class="price-grid">
       <div class="price-card">
         <div class="plan-row"><p class="plan">Free</p></div>
         <p class="amount">₩0</p>
-        <p class="desc">영구 무료 · 횟수 제한 없음</p>
+        <p class="desc">영구 무료, 횟수 제한 없음</p>
         <ul>
-          <li>드라이버·아이언 스윙 등록 · 연습 무제한</li>
+          <li>드라이버·아이언 스윙 등록과 연습 무제한</li>
           <li>같은 클럽 직전 측정과 비교</li>
           <li>기준 리듬 3종</li>
           <li>최근 7일 히스토리</li>
           <li class="off">사운드팩 (기본음만)</li>
           <li class="off">어프로치·퍼팅 등록</li>
-          <li class="off">전체 기간 통계 · 클럽별 측정 기록</li>
+          <li class="off">전체 기간 통계와 클럽별 측정 기록</li>
         </ul>
       </div>
       <div class="price-card">
-        <div class="plan-row"><p class="plan">Lifetime</p><span class="plan-tag">일회성 결제</span></div>
+        <div class="plan-row"><p class="plan">Lifetime</p></div>
         <p class="amount">₩12,900</p>
-        <p class="desc">구독 아님 · 할인 없음</p>
+        <p class="desc">한 번만 결제해요. 구독, 자동 갱신, 추가 결제, 할인 모두 없어요.</p>
         <ul>
           <li>Free의 모든 기능 포함</li>
           <li>사운드팩 전체</li>
-          <li>샷 간격 선택 (15 · 25 · 40초 또는 직접 입력)</li>
+          <li>샷 간격 선택(15초, 25초, 40초 또는 직접 입력)</li>
           <li>어프로치·퍼팅 스윙 등록</li>
           <li>전체 기간 연습 기록과 클럽별 측정 기록</li>
         </ul>
       </div>
     </div>
-    <p class="price-assure">구독 아님 · 자동 갱신 없음 · 추가 결제 없음</p>
     <p class="price-foot">결제·환불 관련 내용은 <a class="link-arrow" href="/terms/">이용약관</a>에서 확인하실 수 있어요.</p>
   </div>
 </section>
@@ -267,7 +255,7 @@
 <!-- ============ FAQ ============ -->
 <section id="faq" class="tight">
   <div class="wrap">
-    <h2 class="section-title">궁금하실 만한 것들</h2>
+    <h2 class="section-title">정확도부터 환불까지</h2>
     <div class="faq">
       <details open>
         <summary>영상 분석이 정확한가요?</summary>
