@@ -287,14 +287,6 @@ h2.section-title { font-size: clamp(26px, 4vw, 40px); font-weight: 800; line-hei
    히어로 직후 첫 시선을 받는 자리라, 숫자가 브랜드 문장보다 커 보이면 안 된다.
    2026-08-21: font-size를 히어로 h1(34~60px) 대비 확실히 작게 유지하고,
    캡션을 짧은 라벨 톤으로 낮춰 "기능 스펙표"가 아니라 신뢰 배지로 읽히게 한다. */
-.stats-strip { border-bottom: 1px solid var(--line); background: var(--surface-2); padding: 32px 0; }
-.stats-strip .wrap { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
-.stat .n {
-  font-family: var(--font-display); font-size: clamp(22px, 2.8vw, 32px);
-  font-weight: 700; letter-spacing: -0.03em; color: var(--ink); line-height: 1.1; margin: 0;
-}
-.stat .n span { font-size: 0.55em; color: var(--muted); }
-.stat .t { font-size: 12.5px; color: var(--muted); margin: 8px 0 0; letter-spacing: 0.01em; }
 
 /* ---------- Steps ---------- */
 /* 2단계다 — "구간과 비교"(폐기 기능)가 3번째 단계였다가 2026-09-22에 빠졌다(T-85) */
@@ -419,7 +411,6 @@ footer .wrap { display: flex; flex-wrap: wrap; align-items: center; justify-cont
      거의 다 차지해 그 아래 이메일 폼(CTA)이 첫 화면 밖으로 밀려난다.
      DOM 순서(텍스트+폼 → 스크린샷) 그대로 두어 CTA가 항상 첫 화면에 남게 한다. */
   .phone { width: min(230px, 58vw); }
-  .stats-strip .wrap { grid-template-columns: 1fr 1fr; gap: 28px 20px; }
   .steps { grid-template-columns: 1fr; }
   /* .trust-grid는 데스크톱부터 이미 2열이라 여기서 다시 선언할 필요가 없다 */
   .price-grid { grid-template-columns: 1fr; }
