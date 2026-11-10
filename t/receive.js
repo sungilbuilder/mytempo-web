@@ -1,10 +1,15 @@
 /* 받은 템포 페이지 (2026-10-16, 앱 T-113 5단계). 설명은 t/index.html 머리 주석. */
 (function () {
-  var p = {};
-  location.hash.replace(/^#/, '').split('&').forEach(function (kv) {
-    var i = kv.indexOf('=');
-    if (i > 0) p[kv.slice(0, i)] = decodeURIComponent(kv.slice(i + 1));
-  });
+  // 깨진 %값 하나가 페이지 전체를 멈추지 않게 그 값만 건너뛴다
+  function parse(s) {
+    var o = {};
+    s.replace(/^[#?]/, '').split('&').forEach(function (kv) {
+      var i = kv.indexOf('=');
+      if (i > 0) try { o[kv.slice(0, i)] = decodeURIComponent(kv.slice(i + 1)); } catch (e) {}
+    });
+    return o;
+  }
+  var p = parse(location.hash);
   // 언어: 보낸 앱의 언어(l, 앱 2026-10-22부터)가 먼저. 없으면 받는 브라우저 언어(창업자 10-22: 영어 앱에서 보낸 링크가 한국 폰 카톡에서 한글로 열렸다)
   var en = true;
   var langs = navigator.languages && navigator.languages.length ? navigator.languages : [navigator.language || ''];
@@ -65,6 +70,13 @@
   // 클럽 번호(n, 2026-10-21: 아이언 4~9 · 어프로치 P · 50~60)는 앱이 검사하니 모양만 보고 그대로 넘긴다
   var no = club && /^(P|[0-9]{1,2})$/.test(p.n || '') ? '&n=' + p.n : '';
   var q = 'b=' + b.toFixed(2) + '&d=' + d.toFixed(2) + (club ? '&c=' + club : '') + no + (f > 0 && f <= 1000 ? '&f=' + Math.round(f) : '');
+  // 출처(2026-11-10): 템포 링크 # 앞에 ?utm_source=…&utm_content=…가 붙어 오면 Play 버튼이 그 출처를 이어받는다.
+  // 인플루언서 프로별 링크용. 없거나 모양이 다르면 index.html의 tempo_share 그대로
+  var qs = parse(location.search), tag = /^[a-z0-9_-]{1,40}$/i;
+  if (tag.test(qs.utm_source || '')) {
+    var ref = 'utm_source=' + qs.utm_source + (tag.test(qs.utm_content || '') ? '&utm_content=' + qs.utm_content : '');
+    $('play').href = 'https://play.google.com/store/apps/details?id=com.mytempo.golf&referrer=' + encodeURIComponent(ref);
+  }
   var play = $('play').href;
   // 안드로이드는 intent 주소로: 앱이 없으면 브라우저가 Play로 넘어간다. 카카오톡 안 브라우저도 이 형식을 연다
   $('open').href = /android/i.test(navigator.userAgent)
