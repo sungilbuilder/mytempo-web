@@ -189,9 +189,10 @@ h2.section-title { font-size: clamp(26px, 4vw, 40px); font-weight: 800; line-hei
   background: transparent; color: var(--ink);
   border: 1px solid var(--line); font-weight: 700; font-size: 15px;
   min-height: 52px; padding: 0 24px; border-radius: var(--radius-sm); text-decoration: none;
+  font-family: inherit; cursor: pointer;
 }
 .btn-ghost:hover { border-color: var(--green); color: var(--green); }
-.btn-ghost svg { width: 18px; height: 18px; flex-shrink: 0; }
+.btn-primary svg, .btn-ghost svg { width: 18px; height: 18px; flex-shrink: 0; }
 .cta-note { font-size: 13px; color: var(--muted); margin: 12px 0 0; }
 .store-row { display: flex; align-items: center; gap: 12px; margin-top: 24px; flex-wrap: wrap; }
 .store-badge {
@@ -201,6 +202,8 @@ h2.section-title { font-size: clamp(26px, 4vw, 40px); font-weight: 800; line-hei
 }
 .store-badge svg { width: 18px; height: 18px; flex-shrink: 0; }
 .store-badge b { display: block; font-size: 13px; color: var(--ink); font-weight: 700; line-height: 1.3; }
+a.store-badge { text-decoration: none; }
+a.store-badge:hover { border-color: var(--green); }
 
 /* ---------- Phone mock (실제 앱 화면을 랜딩에 노출) ---------- */
 .phone-stage { position: relative; display: flex; align-items: center; justify-content: center; }
@@ -401,6 +404,9 @@ h2.section-title { font-size: clamp(26px, 4vw, 40px); font-weight: 800; line-hei
 .final-cta .wrap { max-width: 640px; }
 .final-cta .signup { margin: 0 auto; }
 .final-cta .cta-note { text-align: center; }
+.final-cta .store-row { justify-content: center; margin-top: 0; }
+/* 2026-11-10 Android만 나온 동안: Play 버튼 아래에 아이폰 알림 신청 칸 */
+.final-cta .store-row + .signup { margin-top: 28px; }
 
 /* ---------- Footer ---------- */
 footer { border-top: 1px solid var(--line); padding: 48px 0 40px; }
@@ -428,6 +434,7 @@ footer .wrap { display: flex; flex-wrap: wrap; align-items: center; justify-cont
 }
 @media (max-width: 560px) {
   .signup { flex-direction: column; }
+  .final-cta .store-row .btn-primary { width: 100%; }
   .trust-grid { grid-template-columns: 1fr; }
   /* 2026-09-22(T-42): 375px에서 가로로 6px 삐져나갔다. 내비 한 줄에 로고·CTA·언어 토글이
      전부 flex-shrink:0이라 좁아져도 아무도 양보하지 않는다 — 줄바꿈 대신 갭과 CTA 여백을
@@ -469,6 +476,8 @@ body { word-break: keep-all; overflow-wrap: break-word; }
 }
 .band .signup input::placeholder { color: var(--band-muted); }
 .band .cta-note { color: var(--band-muted); }
+.band .btn-ghost { color: var(--band-ink); border-color: var(--band-muted); }
+.band .btn-ghost:hover { color: var(--band-btn); border-color: var(--band-btn); }
 
 /* 문제 제기 섹션은 한 문장짜리라 상하 여백을 더 조인다 */
 section.tight.statement-only { padding: 56px 0 8px; }
