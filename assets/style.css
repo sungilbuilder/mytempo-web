@@ -189,7 +189,6 @@ h2.section-title { font-size: clamp(26px, 4vw, 40px); font-weight: 800; line-hei
   background: transparent; color: var(--ink);
   border: 1px solid var(--line); font-weight: 700; font-size: 15px;
   min-height: 52px; padding: 0 24px; border-radius: var(--radius-sm); text-decoration: none;
-  font-family: inherit; cursor: pointer;
 }
 .btn-ghost:hover { border-color: var(--green); color: var(--green); }
 .btn-primary svg, .btn-ghost svg { width: 18px; height: 18px; flex-shrink: 0; }
@@ -202,8 +201,6 @@ h2.section-title { font-size: clamp(26px, 4vw, 40px); font-weight: 800; line-hei
 }
 .store-badge svg { width: 18px; height: 18px; flex-shrink: 0; }
 .store-badge b { display: block; font-size: 13px; color: var(--ink); font-weight: 700; line-height: 1.3; }
-a.store-badge { text-decoration: none; }
-a.store-badge:hover { border-color: var(--green); }
 
 /* ---------- Phone mock (실제 앱 화면을 랜딩에 노출) ---------- */
 .phone-stage { position: relative; display: flex; align-items: center; justify-content: center; }
@@ -290,14 +287,6 @@ a.store-badge:hover { border-color: var(--green); }
    히어로 직후 첫 시선을 받는 자리라, 숫자가 브랜드 문장보다 커 보이면 안 된다.
    2026-08-21: font-size를 히어로 h1(34~60px) 대비 확실히 작게 유지하고,
    캡션을 짧은 라벨 톤으로 낮춰 "기능 스펙표"가 아니라 신뢰 배지로 읽히게 한다. */
-.stats-strip { border-bottom: 1px solid var(--line); background: var(--surface-2); padding: 32px 0; }
-.stats-strip .wrap { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
-.stat .n {
-  font-family: var(--font-display); font-size: clamp(22px, 2.8vw, 32px);
-  font-weight: 700; letter-spacing: -0.03em; color: var(--ink); line-height: 1.1; margin: 0;
-}
-.stat .n span { font-size: clamp(13px, 1.55vw, 18px); color: var(--muted); }
-.stat .t { font-size: 12.5px; color: var(--muted); margin: 8px 0 0; letter-spacing: 0.01em; }
 
 /* ---------- Steps ---------- */
 /* 2단계다 — "구간과 비교"(폐기 기능)가 3번째 단계였다가 2026-09-22에 빠졌다(T-85) */
@@ -405,8 +394,6 @@ a.store-badge:hover { border-color: var(--green); }
 .final-cta .signup { margin: 0 auto; }
 .final-cta .cta-note { text-align: center; }
 .final-cta .store-row { justify-content: center; margin-top: 0; }
-/* 2026-11-10 Android만 나온 동안: Play 버튼 아래에 아이폰 알림 신청 칸 */
-.final-cta .store-row + .signup { margin-top: 28px; }
 
 /* ---------- Footer ---------- */
 footer { border-top: 1px solid var(--line); padding: 48px 0 40px; }
@@ -424,7 +411,6 @@ footer .wrap { display: flex; flex-wrap: wrap; align-items: center; justify-cont
      거의 다 차지해 그 아래 이메일 폼(CTA)이 첫 화면 밖으로 밀려난다.
      DOM 순서(텍스트+폼 → 스크린샷) 그대로 두어 CTA가 항상 첫 화면에 남게 한다. */
   .phone { width: min(230px, 58vw); }
-  .stats-strip .wrap { grid-template-columns: 1fr 1fr; gap: 28px 20px; }
   .steps { grid-template-columns: 1fr; }
   /* .trust-grid는 데스크톱부터 이미 2열이라 여기서 다시 선언할 필요가 없다 */
   .price-grid { grid-template-columns: 1fr; }
@@ -434,7 +420,6 @@ footer .wrap { display: flex; flex-wrap: wrap; align-items: center; justify-cont
 }
 @media (max-width: 560px) {
   .signup { flex-direction: column; }
-  .final-cta .store-row .btn-primary { width: 100%; }
   .trust-grid { grid-template-columns: 1fr; }
   /* 2026-09-22(T-42): 375px에서 가로로 6px 삐져나갔다. 내비 한 줄에 로고·CTA·언어 토글이
      전부 flex-shrink:0이라 좁아져도 아무도 양보하지 않는다 — 줄바꿈 대신 갭과 CTA 여백을
@@ -476,7 +461,7 @@ body { word-break: keep-all; overflow-wrap: break-word; }
 }
 .band .signup input::placeholder { color: var(--band-muted); }
 .band .cta-note { color: var(--band-muted); }
-.band .btn-ghost { color: var(--band-ink); border-color: var(--band-muted); }
+.band .btn-ghost { color: var(--band-ink); border-color: var(--band-line); }
 .band .btn-ghost:hover { color: var(--band-btn); border-color: var(--band-btn); }
 
 /* 문제 제기 섹션은 한 문장짜리라 상하 여백을 더 조인다 */

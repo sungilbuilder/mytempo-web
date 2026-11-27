@@ -2,12 +2,12 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-woPlmpRkM1gqbswL9fDu/2VmFfqWz5HU817QuhK3Z4E=' 'sha256-DVGrjJVdS4/A2rk+JdM9coXrBWGGS6alF9hMBvU5iwM='; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://qmpvnjoefkskmykwudxp.supabase.co; form-action 'self'; base-uri 'none'; object-src 'none';">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-woPlmpRkM1gqbswL9fDu/2VmFfqWz5HU817QuhK3Z4E=' 'sha256-KyHRJxmzaXodE8qSvsw2/BHRthdQx7RH0iosEl5xlU0='; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://qmpvnjoefkskmykwudxp.supabase.co; form-action 'self'; base-uri 'none'; object-src 'none';">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>The tempo of your best swing · mytempo</title>
-<meta name="description" content="Mark three points and the one swing of your life is saved as your own number. A golf tempo trainer you can practice with offline, with no account and no ads.">
+<meta name="description" content="Mark three points and the one swing of your life is saved as your own number. A fully offline golf tempo trainer with no account and no ads.">
 <meta property="og:title" content="The tempo of your best swing · mytempo">
-<meta property="og:description" content="Not a pro's tempo. Yours. Practice offline, no ads.">
+<meta property="og:description" content="Not a pro's tempo. Yours. Fully offline, no ads.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://mytempo.co.kr/en/">
 <meta property="og:image" content="https://mytempo.co.kr/assets/og-en.png">
@@ -67,13 +67,9 @@
       <h1>Not a pro's tempo,<br>the tempo of your best swing.</h1>
       <p class="lead">Mark backswing start, top and impact, and the one swing of your life is saved as a number that belongs to you.</p>
 
-      <!-- 2026-11-10: Android went out first (Play 35, 11-09). When iPhone opens, merge launch-store-buttons for two buttons -->
-      <div class="store-row">
-        <a class="btn-primary" href="https://play.google.com/store/apps/details?id=com.mytempo.golf&amp;referrer=utm_source%3Dwebsite"><svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor"><path d="M3.6 2.2a1 1 0 0 0-.4.8v18a1 1 0 0 0 .4.8l10-9.8-10-9.8Zm11.4 8.5 2.9-2.8-11-6.3 8.1 9.1Zm0 2.6-8.1 9.1 11-6.3-2.9-2.8Zm1.5-1.3 3.6-2a1 1 0 0 0 0-1.8l-3.6-2-2.1 2 2.1 2 2.1 1.8Z"/></svg>Get it on Google Play</a>
-        <a class="store-badge" href="#notify">
-          <svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor" style="color:var(--muted)"><path d="M16.4 12.7c0-2.3 1.9-3.4 2-3.5-1.1-1.6-2.8-1.8-3.4-1.8-1.4-.1-2.8.9-3.5.9-.7 0-1.8-.9-3-.8-1.5 0-2.9.9-3.7 2.3-1.6 2.7-.4 6.8 1.1 9 .8 1.1 1.7 2.3 2.9 2.3 1.2 0 1.6-.7 3-.7 1.4 0 1.8.7 3 .7 1.3 0 2.1-1.1 2.8-2.2.9-1.3 1.3-2.5 1.3-2.6 0 0-2.5-1-2.5-3.6ZM14.1 5.5c.6-.8 1.1-1.9 1-3-.9 0-2.1.6-2.8 1.4-.6.7-1.2 1.8-1 2.9 1 .1 2.1-.5 2.8-1.3Z"/></svg>
-          <span>App Store<b>Get notified</b></span>
-        </a>
+      <div class="store-row store-cta">
+        <a class="btn-primary" data-store="play" href="https://play.google.com/store/apps/details?id=com.mytempo.golf&amp;referrer=utm_source%3Dwebsite"><svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor"><path d="M3.6 2.2a1 1 0 0 0-.4.8v18a1 1 0 0 0 .4.8l10-9.8-10-9.8Zm11.4 8.5 2.9-2.8-11-6.3 8.1 9.1Zm0 2.6-8.1 9.1 11-6.3-2.9-2.8Zm1.5-1.3 3.6-2a1 1 0 0 0 0-1.8l-3.6-2-2.1 2 2.1 2 2.1 1.8Z"/></svg>Get it on Google Play</a>
+        <a class="btn-ghost" data-store="ios" href="https://apps.apple.com/app/id6818107414"><svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor"><path d="M16.4 12.7c0-2.3 1.9-3.4 2-3.5-1.1-1.6-2.8-1.8-3.4-1.8-1.4-.1-2.8.9-3.5.9-.7 0-1.8-.9-3-.8-1.5 0-2.9.9-3.7 2.3-1.6 2.7-.4 6.8 1.1 9 .8 1.1 1.7 2.3 2.9 2.3 1.2 0 1.6-.7 3-.7 1.4 0 1.8.7 3 .7 1.3 0 2.1-1.1 2.8-2.2.9-1.3 1.3-2.5 1.3-2.6 0 0-2.5-1-2.5-3.6ZM14.1 5.5c.6-.8 1.1-1.9 1-3-.9 0-2.1.6-2.8 1.4-.6.7-1.2 1.8-1 2.9 1 .1 2.1-.5 2.8-1.3Z"/></svg>Download on the App Store</a>
       </div>
     </div>
 
@@ -91,15 +87,6 @@
     </div>
   </div>
 </section>
-
-<div class="stats-strip">
-  <div class="wrap">
-    <div class="stat"><p class="n">3<span> points</span></p><p class="t">All you mark to register a swing</p></div>
-    <div class="stat"><p class="n">3<span> rhythms</span></p><p class="t">Named tempo ratios</p></div>
-    <div class="stat"><p class="n">0</p><p class="t">Swing videos uploaded to a server</p></div>
-    <div class="stat"><p class="n">₩0</p><p class="t">The core features, free forever</p></div>
-  </div>
-</div>
 
 <section class="tight statement-only">
   <div class="wrap">
@@ -175,7 +162,7 @@
     <h2 class="section-title">Your swing videos never leave your phone</h2>
     <div class="trust-grid">
       <div class="trust-item">
-        <p><b>Practice without internet.</b> Registering a swing and practicing both work in airplane mode. You need a connection to buy or restore Premium.</p>
+        <p><b>Fully offline.</b> Every feature works in airplane mode, too.</p>
       </div>
       <div class="trust-item">
         <p><b>No account.</b> You never sign up or log in, and the app never asks for your email.</p>
@@ -237,7 +224,7 @@
       </details>
       <details>
         <summary>Is it on iPhone too?</summary>
-        <p>Not yet. The Android app is out now on Google Play, and the iPhone app is coming to the App Store. Leave your email at the bottom and we'll write once, the day it's out. Same features and price on both.</p>
+        <p>Get it on Google Play (Android) or the App Store (iPhone). Same features on both.</p>
       </details>
       <details>
         <summary>Can I get a refund?</summary>
@@ -255,21 +242,14 @@
   </div>
 </section>
 
-<section class="band final-cta tight" id="notify">
+<section class="band final-cta tight">
   <div class="wrap">
     <h2 class="section-title">Save your best swing<br>as a number.</h2>
     <p class="section-sub" style="margin:0 auto 32px">Try every feature free for your first 7 days.</p>
-    <div class="store-row">
-      <a class="btn-primary" href="https://play.google.com/store/apps/details?id=com.mytempo.golf&amp;referrer=utm_source%3Dwebsite"><svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor"><path d="M3.6 2.2a1 1 0 0 0-.4.8v18a1 1 0 0 0 .4.8l10-9.8-10-9.8Zm11.4 8.5 2.9-2.8-11-6.3 8.1 9.1Zm0 2.6-8.1 9.1 11-6.3-2.9-2.8Zm1.5-1.3 3.6-2a1 1 0 0 0 0-1.8l-3.6-2-2.1 2 2.1 2 2.1 1.8Z"/></svg>Get it on Google Play</a>
+    <div class="store-row store-cta">
+      <a class="btn-primary" data-store="play" href="https://play.google.com/store/apps/details?id=com.mytempo.golf&amp;referrer=utm_source%3Dwebsite"><svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor"><path d="M3.6 2.2a1 1 0 0 0-.4.8v18a1 1 0 0 0 .4.8l10-9.8-10-9.8Zm11.4 8.5 2.9-2.8-11-6.3 8.1 9.1Zm0 2.6-8.1 9.1 11-6.3-2.9-2.8Zm1.5-1.3 3.6-2a1 1 0 0 0 0-1.8l-3.6-2-2.1 2 2.1 2 2.1 1.8Z"/></svg>Get it on Google Play</a>
+      <a class="btn-ghost" data-store="ios" href="https://apps.apple.com/app/id6818107414"><svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor"><path d="M16.4 12.7c0-2.3 1.9-3.4 2-3.5-1.1-1.6-2.8-1.8-3.4-1.8-1.4-.1-2.8.9-3.5.9-.7 0-1.8-.9-3-.8-1.5 0-2.9.9-3.7 2.3-1.6 2.7-.4 6.8 1.1 9 .8 1.1 1.7 2.3 2.9 2.3 1.2 0 1.6-.7 3-.7 1.4 0 1.8.7 3 .7 1.3 0 2.1-1.1 2.8-2.2.9-1.3 1.3-2.5 1.3-2.6 0 0-2.5-1-2.5-3.6ZM14.1 5.5c.6-.8 1.1-1.9 1-3-.9 0-2.1.6-2.8 1.4-.6.7-1.2 1.8-1 2.9 1 .1 2.1-.5 2.8-1.3Z"/></svg>Download on the App Store</a>
     </div>
-    <form class="signup js-signup" novalidate>
-      <label for="email2" style="position:absolute;left:-9999px">Email address</label>
-      <input id="email2" type="email" name="email" placeholder="Email address" autocomplete="email" required>
-      <input type="text" name="company" tabindex="-1" autocomplete="off" aria-hidden="true"
-             style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
-      <button class="btn-ghost" type="submit">Notify me for iPhone</button>
-    </form>
-    <p class="cta-note js-note" role="status" aria-live="polite">One email the day the iPhone app is out, nothing else.</p>
   </div>
 </section>
 
@@ -319,7 +299,7 @@
   var ENDPOINT = 'https://qmpvnjoefkskmykwudxp.supabase.co/rest/v1/rpc/subscribe_launch';
   var KEY = 'sb_publishable_e43NxXMODsX_8WIF1ci0JA_yK0rhF0T';
 
-  var OK   = "You're on the list. We'll email you once, the day the iPhone app is out.";
+  var OK   = "You're on the list. We'll email you once when we launch.";
   var FAIL = 'That didn’t go through. Try again in a moment, or email contact@mytempo.co.kr';
   var BAD  = 'Please check the email address.';
 
@@ -366,5 +346,6 @@
   });
 })();
 </script>
+<script src="/assets/store-cta.js"></script>
 </body>
 </html>
