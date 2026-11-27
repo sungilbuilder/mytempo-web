@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-woPlmpRkM1gqbswL9fDu/2VmFfqWz5HU817QuhK3Z4E=' 'sha256-KyHRJxmzaXodE8qSvsw2/BHRthdQx7RH0iosEl5xlU0='; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://qmpvnjoefkskmykwudxp.supabase.co; form-action 'self'; base-uri 'none'; object-src 'none';">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-woPlmpRkM1gqbswL9fDu/2VmFfqWz5HU817QuhK3Z4E='; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; form-action 'self'; base-uri 'none'; object-src 'none';">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>The tempo of your best swing · mytempo</title>
 <meta name="description" content="Mark three points and the one swing of your life is saved as your own number. A golf tempo trainer you can practice with offline, with no account and no ads.">
@@ -290,62 +290,6 @@
     try{localStorage.setItem("mytempo:lang",a.getAttribute("hreflang"));}catch(err){}});})();
 </script>
 
-<script>
-/* Launch-notification signup. Same endpoint as the Korean page.
-   Storage: a single security-definer function on Supabase — the table itself is not
-   reachable with the publishable key, so this key being public exposes nothing.
-   Duplicate addresses pass silently so that no one can probe whether an address is on the list. */
-(function () {
-  var ENDPOINT = 'https://qmpvnjoefkskmykwudxp.supabase.co/rest/v1/rpc/subscribe_launch';
-  var KEY = 'sb_publishable_e43NxXMODsX_8WIF1ci0JA_yK0rhF0T';
-
-  var OK   = "You're on the list. We'll email you once when we launch.";
-  var FAIL = 'That didn’t go through. Try again in a moment, or email contact@mytempo.co.kr';
-  var BAD  = 'Please check the email address.';
-
-  function valid(v) { return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v); }
-  function say(form, msg, tone) {
-    var note = form.parentNode.querySelector('.js-note');
-    if (!note) return;
-    note.textContent = msg;
-    note.style.color = tone === 'ok' ? 'var(--green)' : tone === 'err' ? '#B4472F' : '';
-  }
-
-  Array.prototype.forEach.call(document.querySelectorAll('.js-signup'), function (form) {
-    form.addEventListener('submit', function (e) {
-      e.preventDefault();
-      if (form.dataset.sent === '1') return;
-      if (form.elements.company && form.elements.company.value) { say(form, OK, 'ok'); return; }
-
-      var input = form.querySelector('input[type=email]');
-      var email = (input.value || '').trim();
-      if (!valid(email)) { say(form, BAD, 'err'); input.focus(); return; }
-
-      var btn = form.querySelector('button');
-      var label = btn.textContent;
-      btn.disabled = true;
-      btn.textContent = 'Sending…';
-
-      fetch(ENDPOINT, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'apikey': KEY,
-          'Authorization': 'Bearer ' + KEY,
-          'Prefer': 'return=minimal'
-        },
-        body: JSON.stringify({ p_email: email })
-      })
-        .then(function (res) {
-          if (res.ok) { form.dataset.sent = '1'; input.value = ''; say(form, OK, 'ok'); }
-          else { say(form, FAIL, 'err'); }
-        })
-        .catch(function () { say(form, FAIL, 'err'); })
-        .finally(function () { btn.disabled = false; btn.textContent = label; });
-    });
-  });
-})();
-</script>
 <script src="/assets/store-cta.js"></script>
 </body>
 </html>

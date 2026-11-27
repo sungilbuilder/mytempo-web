@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-fwsTcmmGGdUWKKTtUajY3DPffcaQ/tGjzVBNvBlcOe4=' 'sha256-XT4k7k6Y45PlAjlRrdh1Vg+N2UuT7FJkno2BRoF4QhY=' 'sha256-WKtGpikDoucQJlkSrUSk9+GP2khIKWFWPQ9ZaY7mBfA='; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://qmpvnjoefkskmykwudxp.supabase.co; form-action 'self'; base-uri 'none'; object-src 'none';">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-fwsTcmmGGdUWKKTtUajY3DPffcaQ/tGjzVBNvBlcOe4=' 'sha256-WKtGpikDoucQJlkSrUSk9+GP2khIKWFWPQ9ZaY7mBfA='; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; form-action 'self'; base-uri 'none'; object-src 'none';">
 <script>
 /* 브라우저 언어에 한국어가 없으면 영어판으로 한 번 보낸다.
 
@@ -298,86 +298,6 @@
     <div class="footer-copy">© 2026 mytempostudio Co.,Ltd. All rights reserved.</div>
   </div>
 </footer>
-
-<script>
-/* 출시 알림 이메일 수집 ------------------------------------------------------
- *
- * 랜딩에 폼을 두는 것은 앱의 "서버 없음" 원칙과 충돌하지 않는다. 그 원칙은
- * **앱이 사용자 연습 데이터를 서버로 보내지 않는다**는 뜻이고, 여기서 받는 건
- * 출시 알림을 원하는 사람이 직접 적은 이메일뿐이다.
- * → 개인정보처리방침에 "출시 알림 신청 시 이메일 수집 · 출시 시점 1회 발송 후 파기"가 필요하다.
- *
- * 저장소: Supabase — 테이블이 아니라 함수 하나만 열려 있다.
- *   · `public.subscribe_launch(p_email)` (security definer) 하나에만 anon 실행 권한.
- *     테이블 `public.launch_signups` 는 anon에게 권한이 전부 회수돼 있다.
- *     → 아래 publishable 키가 그대로 노출돼도 명단을 읽거나 지울 수 없다.
- *   · 중복 주소여도 함수가 조용히 통과시킨다. 409를 돌려주면
- *     "그 주소가 이미 등록돼 있다"가 밖으로 새기 때문이다.
- *   · ⚠️ 무료 플랜 프로젝트는 활동이 없으면 자동 일시정지된다.
- *     정지되면 신청이 실패하므로 주기적으로 상태를 확인할 것.
- * -------------------------------------------------------------------------- */
-(function () {
-  var ENDPOINT = 'https://qmpvnjoefkskmykwudxp.supabase.co/rest/v1/rpc/subscribe_launch';
-  var KEY = 'sb_publishable_e43NxXMODsX_8WIF1ci0JA_yK0rhF0T';
-
-  var OK   = '신청됐어요. 출시하면 이 주소로 딱 한 번 알려드릴게요.';
-  var FAIL = '지금 신청이 안 되네요. 잠시 뒤 다시 시도하거나 contact@mytempo.co.kr 로 보내주세요.';
-  var BAD  = '이메일 주소를 다시 확인해 주세요.';
-
-  function valid(v) { return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v); }
-
-  function say(form, msg, tone) {
-    var note = form.parentNode.querySelector('.js-note');
-    if (!note) return;
-    note.textContent = msg;
-    note.style.color = tone === 'ok' ? 'var(--green)' : tone === 'err' ? '#B4472F' : '';
-  }
-
-  Array.prototype.forEach.call(document.querySelectorAll('.js-signup'), function (form) {
-    form.addEventListener('submit', function (e) {
-      e.preventDefault();
-      if (form.dataset.sent === '1') return;
-
-      // 봇 트랩에 값이 있으면 성공한 척하고 아무것도 보내지 않는다
-      if (form.elements.company && form.elements.company.value) { say(form, OK, 'ok'); return; }
-
-      var input = form.querySelector('input[type=email]');
-      var email = (input.value || '').trim();
-      if (!valid(email)) { say(form, BAD, 'err'); input.focus(); return; }
-
-      var btn = form.querySelector('button');
-      var label = btn.textContent;
-      btn.disabled = true;
-      btn.textContent = '보내는 중…';
-
-      fetch(ENDPOINT, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'apikey': KEY,
-          'Authorization': 'Bearer ' + KEY,
-          'Prefer': 'return=minimal'
-        },
-        body: JSON.stringify({ p_email: email })
-      })
-        .then(function (res) {
-          if (res.ok) {
-            form.dataset.sent = '1';
-            input.value = '';
-            say(form, OK, 'ok');
-          } else {
-            say(form, FAIL, 'err');
-          }
-        })
-        .catch(function () { say(form, FAIL, 'err'); })
-        .finally(function () {
-          btn.disabled = false;
-          btn.textContent = label;
-        });
-    });
-  });
-})();
-</script>
 
 <script>
 /* 언어를 직접 고르면 기억한다 — 다음 방문에 자동 전환이 그 선택을 덮어쓰지 않도록. */
